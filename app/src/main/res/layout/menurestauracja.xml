@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#9DA2C4"
+    tools:context=".MenurestauracjaActivity">
+
+    <ImageView
+        android:id="@+id/logoimageView"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/rezerwacjebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/logo_application"
+        tools:srcCompat="@mipmap/logo_application"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/rezerwacjebutton"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Rezerwacje"
+        app:layout_constraintBottom_toTopOf="@+id/stolikibutton"
+        app:layout_constraintEnd_toStartOf="@+id/skanerbutton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/skanerbutton"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Skaner QR"
+        app:layout_constraintBottom_toTopOf="@+id/wyszukiwaniebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rezerwacjebutton"
+        app:layout_constraintTop_toBottomOf="@+id/logoimageView" />
+
+    <Button
+        android:id="@+id/stolikibutton"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:text="Stoliki"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/wyszukiwaniebutton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/skanerbutton" />
+
+    <Button
+        android:id="@+id/wyszukiwaniebutton"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/wyszukiwanie_rezerwacji"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/stolikibutton"
+        app:layout_constraintTop_toBottomOf="@+id/skanerbutton" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/wylogujbtn"
+        android:layout_width="71dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:clickable="false"
+        android:onClick="Wyloguj"
+        app:backgroundTint="#9DA2C4"
+        app:fabSize="auto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxImageSize="36dp"
+        app:srcCompat="@mipmap/ikonka_wyjscia"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

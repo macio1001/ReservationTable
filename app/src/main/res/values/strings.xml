@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ReservationTable</string>
+    <string name="szukaj">Szukaj</string>
+    <string name="wyszukiwanie_rezerwacji">Wyszukiwanie rezerwacji</string>
+    <string name="_1_osoba">1 osoba</string>
+    <string name="_2_osoby">2 osoby</string>
+    <string name="_4_osoby">4 osoby</string>
+    <string name="_6_os_b">6 osób</string>
+    <string name="_3_osoby">3 osoby</string>
+    <string name="_5_os_b">5 osób</string>
+</resources>
