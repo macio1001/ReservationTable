@@ -55,7 +55,6 @@ public class StolikiActivity extends AppCompatActivity {
         String wybranadata1=intent1.getStringExtra("Data");
         String email1=intent1.getStringExtra("Email");
         String wybranagodzina1=intent1.getStringExtra("Godzina");
-        String koncowagodzina1=intent1.getStringExtra("GodzinaKoncowa");
         int ilosc1=intent1.getIntExtra("Osob",0);
 
         opcjestolikow();

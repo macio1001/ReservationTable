@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.SingleLineTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.flags.Singletons;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -38,12 +40,12 @@ public class LoginActivity extends AppCompatActivity {
         if(uzytkownik!=null) {
             String email=uzytkownik.getEmail();
             if (email.equals("maciej.oles@gmail.com")) {
-                Intent intent = new Intent(getApplicationContext(), MenuklienDesignPatternsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MenuklientActivity.class);
                 Email=email;
                 intent.putExtra("Email",Email);
                 startActivity(intent);
             }
-            if(email.equals("maciej.oles@gmail.com")) {
+            if(email.equals("reservationtable1@gmail.com")) {
                 Intent intent = new Intent(getApplicationContext(), MenurestauracjaActivity.class);
                 startActivity(intent);
             }

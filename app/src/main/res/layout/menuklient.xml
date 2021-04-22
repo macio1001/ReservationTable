@@ -68,6 +68,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:maxImageSize="36dp"
-        app:srcCompat="@mipmap/ikonka_wyjscia" />
+        app:srcCompat="@mipmap/exit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

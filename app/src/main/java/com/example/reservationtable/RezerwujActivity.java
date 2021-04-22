@@ -25,6 +25,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 
+import com.google.android.gms.flags.Singletons;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -47,6 +48,7 @@ public class RezerwujActivity extends AppCompatActivity{
     int ilosc=0,minute,Minute;
     FirebaseFirestore firebaseFirestore;
     Boolean zajety1=false,zajety2=false,zajety3=false,zajety4=false,zajety5=false,zajety6=false,WylaczStolik1=false,WylaczStolik2=false,WylaczStolik4=false,WylaczStolik5=false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,9 +221,9 @@ public class RezerwujActivity extends AppCompatActivity{
                                         @Override
                                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                                                RezerwacjaDesignPatterns rezerwacjaDesignPatterns = documentSnapshot.toObject(RezerwacjaDesignPatterns.class);
-                                                rezerwacjaDesignPatterns.setDocumentId(documentSnapshot.getId());
-                                                String documentId = rezerwacjaDesignPatterns.getDocumentId();
+                                                Rezerwacja rezerwacja = documentSnapshot.toObject(Rezerwacja.class);
+                                                rezerwacja.setDocumentId(documentSnapshot.getId());
+                                                String documentId = rezerwacja.getDocumentId();
 
                                                 if (documentId != null) {
                                                     zajety1 = true;
@@ -239,9 +241,9 @@ public class RezerwujActivity extends AppCompatActivity{
                                         @Override
                                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                                                RezerwacjaDesignPatterns rezerwacjaDesignPatterns = documentSnapshot.toObject(RezerwacjaDesignPatterns.class);
-                                                rezerwacjaDesignPatterns.setDocumentId(documentSnapshot.getId());
-                                                String documentId = rezerwacjaDesignPatterns.getDocumentId();
+                                                Rezerwacja rezerwacja = documentSnapshot.toObject(Rezerwacja.class);
+                                                rezerwacja.setDocumentId(documentSnapshot.getId());
+                                                String documentId = rezerwacja.getDocumentId();
 
                                                 if (documentId != null) {
                                                     zajety2 = true;
@@ -259,9 +261,9 @@ public class RezerwujActivity extends AppCompatActivity{
                                         @Override
                                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                                                RezerwacjaDesignPatterns rezerwacjaDesignPatterns = documentSnapshot.toObject(RezerwacjaDesignPatterns.class);
-                                                rezerwacjaDesignPatterns.setDocumentId(documentSnapshot.getId());
-                                                String documentId = rezerwacjaDesignPatterns.getDocumentId();
+                                                Rezerwacja rezerwacja = documentSnapshot.toObject(Rezerwacja.class);
+                                                rezerwacja.setDocumentId(documentSnapshot.getId());
+                                                String documentId = rezerwacja.getDocumentId();
 
                                                 if (documentId != null) {
                                                     zajety3 = true;
@@ -279,9 +281,9 @@ public class RezerwujActivity extends AppCompatActivity{
                                         @Override
                                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                                                RezerwacjaDesignPatterns rezerwacjaDesignPatterns = documentSnapshot.toObject(RezerwacjaDesignPatterns.class);
-                                                rezerwacjaDesignPatterns.setDocumentId(documentSnapshot.getId());
-                                                String documentId = rezerwacjaDesignPatterns.getDocumentId();
+                                                Rezerwacja rezerwacja = documentSnapshot.toObject(Rezerwacja.class);
+                                                rezerwacja.setDocumentId(documentSnapshot.getId());
+                                                String documentId = rezerwacja.getDocumentId();
 
                                                 if (documentId != null) {
                                                     zajety4 = true;
@@ -299,9 +301,9 @@ public class RezerwujActivity extends AppCompatActivity{
                                         @Override
                                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                                                RezerwacjaDesignPatterns rezerwacjaDesignPatterns = documentSnapshot.toObject(RezerwacjaDesignPatterns.class);
-                                                rezerwacjaDesignPatterns.setDocumentId(documentSnapshot.getId());
-                                                String documentId = rezerwacjaDesignPatterns.getDocumentId();
+                                                Rezerwacja rezerwacja = documentSnapshot.toObject(Rezerwacja.class);
+                                                rezerwacja.setDocumentId(documentSnapshot.getId());
+                                                String documentId = rezerwacja.getDocumentId();
 
                                                 if (documentId != null) {
                                                     zajety5 = true;
@@ -319,9 +321,9 @@ public class RezerwujActivity extends AppCompatActivity{
                                         @Override
                                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                                                RezerwacjaDesignPatterns rezerwacjaDesignPatterns = documentSnapshot.toObject(RezerwacjaDesignPatterns.class);
-                                                rezerwacjaDesignPatterns.setDocumentId(documentSnapshot.getId());
-                                                String documentId = rezerwacjaDesignPatterns.getDocumentId();
+                                                Rezerwacja rezerwacja = documentSnapshot.toObject(Rezerwacja.class);
+                                                rezerwacja.setDocumentId(documentSnapshot.getId());
+                                                String documentId = rezerwacja.getDocumentId();
 
                                                 if (documentId != null) {
                                                     zajety6 = true;
