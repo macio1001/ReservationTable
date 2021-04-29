@@ -96,30 +96,19 @@ public class RezerwujActivity extends AppCompatActivity{
         onDateSetListener=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int rok, int miesiac, int dzien) {
-                if(miesiac==0){
-                    Miesiac="Styczeń";
-                }else if(miesiac==1){
-                    Miesiac="Luty";
-                }else if(miesiac==2){
-                    Miesiac="Marzec";
-                }else if(miesiac==3){
-                    Miesiac="Kwiecień";
-                }else if(miesiac==4){
-                    Miesiac="Maj";
-                }else if(miesiac==5){
-                    Miesiac="Czerwiec";
-                }else if(miesiac==6){
-                    Miesiac="Lipiec";
-                }else if(miesiac==7){
-                    Miesiac="Sierpień";
-                }else if(miesiac==8){
-                    Miesiac="Wrzesień";
-                }else if(miesiac==9){
-                    Miesiac="Październik";
-                }else if(miesiac==10){
-                    Miesiac="Listopad";
-                }else if(miesiac==11){
-                    Miesiac="Grudzień";
+                switch (miesiac){
+                    case 0: Miesiac="Styczeń";break;
+                    case 1: Miesiac="Luty";break;
+                    case 2: Miesiac="Marzec";break;
+                    case 3: Miesiac="Kwiecień";break;
+                    case 4: Miesiac="Maj";break;
+                    case 5: Miesiac="Czerwiec";break;
+                    case 6: Miesiac="Lipiec";break;
+                    case 7: Miesiac="Sierpień";break;
+                    case 8: Miesiac="Wrzesień";break;
+                    case 9: Miesiac="Październik";break;
+                    case 10: Miesiac="Listopad";break;
+                    case 11: Miesiac="Grudzień";break;
                 }
                 choosedate.setText(dzien+" "+Miesiac+" "+rok);
                 wybranadata=dzien+" "+Miesiac+" "+rok;
@@ -161,52 +150,8 @@ public class RezerwujActivity extends AppCompatActivity{
                                 godzina += 1;
                                 minute = 0;
                             } else if (minute < 0) {
-                                if (minute == -15) {
-                                    godzina -= 1;
-                                    minute = 45;
-                                } else if (minute == -14) {
-                                    godzina -= 1;
-                                    minute = 46;
-                                } else if (minute == -13) {
-                                    godzina -= 1;
-                                    minute = 47;
-                                } else if (minute == -12) {
-                                    godzina -= 1;
-                                    minute = 48;
-                                } else if (minute == -11) {
-                                    godzina -= 1;
-                                    minute = 49;
-                                } else if (minute == -10) {
-                                    godzina -= 1;
-                                    minute = 50;
-                                } else if (minute == -9) {
-                                    godzina -= 1;
-                                    minute = 51;
-                                } else if (minute == -8) {
-                                    godzina -= 1;
-                                    minute = 52;
-                                } else if (minute == -7) {
-                                    godzina -= 1;
-                                    minute = 53;
-                                } else if (minute == -6) {
-                                    godzina -= 1;
-                                    minute = 54;
-                                } else if (minute == -5) {
-                                    godzina -= 1;
-                                    minute = 55;
-                                } else if (minute == -4) {
-                                    godzina -= 1;
-                                    minute = 56;
-                                } else if (minute == -3) {
-                                    godzina -= 1;
-                                    minute = 57;
-                                } else if (minute == -2) {
-                                    godzina -= 1;
-                                    minute = 58;
-                                } else if (minute == -1) {
-                                    godzina -= 1;
-                                    minute = 59;
-                                }
+                                godzina-=1;
+                                minute+=60;
                             }
                             if (minute >= 0 && minute < 10) {
                                 Minuta = "0" + minute;
