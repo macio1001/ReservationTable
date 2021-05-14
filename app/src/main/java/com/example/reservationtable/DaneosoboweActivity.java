@@ -128,85 +128,19 @@ public class DaneosoboweActivity extends AppCompatActivity {
                     daneosobowe.put("Stolik", stolik1);
                     daneosobowe.put("Ilosc", Ilosc);
                     daneosobowe.put("Kod",Text);
-                    if (stolik == 1) {
-                        firebaseFirestore.collection("Stoliknr1").add(daneosobowe)
-                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                    @Override
-                                    public void onSuccess(DocumentReference documentReference) {
-                                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error writting document", e);
-                            }
-                        });
-                    } else if (stolik == 2) {
-                        firebaseFirestore.collection("Stoliknr2").add(daneosobowe)
-                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                    @Override
-                                    public void onSuccess(DocumentReference documentReference) {
-                                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error writting document", e);
-                            }
-                        });
-                    } else if (stolik == 3) {
-                        firebaseFirestore.collection("Stoliknr3").add(daneosobowe)
-                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                    @Override
-                                    public void onSuccess(DocumentReference documentReference) {
-                                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error writting document", e);
-                            }
-                        });
-                    } else if (stolik == 4) {
-                        firebaseFirestore.collection("Stoliknr4").add(daneosobowe)
-                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                    @Override
-                                    public void onSuccess(DocumentReference documentReference) {
-                                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error writting document", e);
-                            }
-                        });
-                    } else if (stolik == 5) {
-                        firebaseFirestore.collection("Stoliknr5").add(daneosobowe)
-                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                    @Override
-                                    public void onSuccess(DocumentReference documentReference) {
-                                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error writting document", e);
-                            }
-                        });
-                    } else if (stolik == 6) {
-                        firebaseFirestore.collection("Stoliknr6").add(daneosobowe)
-                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                    @Override
-                                    public void onSuccess(DocumentReference documentReference) {
-                                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error writting document", e);
-                            }
-                        });
-                    }
+
+                    firebaseFirestore.collection("Stoliknr" + stolik).add(daneosobowe)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error writting document", e);
+                        }
+                    });
 
                     try {
                         bitmap = textToImageEncode(Text);
