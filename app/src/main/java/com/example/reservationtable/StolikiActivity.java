@@ -56,6 +56,10 @@ public class StolikiActivity extends AppCompatActivity {
         String email1=intent1.getStringExtra("Email");
         String wybranagodzina1=intent1.getStringExtra("Godzina");
         int ilosc1=intent1.getIntExtra("Osob",0);
+        Boolean WylaczStoliknr1=intent1.getBooleanExtra("WylaczStolik1",false);
+        Boolean WylaczStoliknr2=intent1.getBooleanExtra("WylaczStolik2",false);
+        Boolean WylaczStoliknr4=intent1.getBooleanExtra("WylaczStolik4",false);
+        Boolean WylaczStoliknr5=intent1.getBooleanExtra("WylaczStolik5",false);
 
         opcjestolikow();
 
@@ -219,6 +223,24 @@ public class StolikiActivity extends AppCompatActivity {
                     Log.d(TAG,e.toString());
                 }
             });
+        }
+
+        if(WylaczStoliknr1==true){
+            stolik1.setBackgroundColor(Color.GRAY);
+            stolik1.setClickable(false);
+            Log.d(TAG,"Lalala:" + WylaczStoliknr1);
+        }else if(WylaczStoliknr2==true){
+            stolik2.setBackgroundColor(Color.GRAY);
+            stolik2.setClickable(false);
+            Log.d(TAG,"Lalala:" + WylaczStoliknr2);
+        }else if(WylaczStoliknr4==true){
+            stolik4.setBackgroundColor(Color.GRAY);
+            stolik4.setClickable(false);
+            Log.d(TAG,"Lalala:" + WylaczStoliknr4);
+        }else if(WylaczStoliknr5==true){
+            stolik5.setBackgroundColor(Color.GRAY);
+            stolik5.setClickable(false);
+            Log.d(TAG,"Lalala:" + WylaczStoliknr5);
         }
 
         stolik1.setOnClickListener(new View.OnClickListener() {

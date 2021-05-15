@@ -388,6 +388,10 @@ public class RezerwujActivity extends AppCompatActivity{
                         intent.putExtra("Godzina", wybranagodzina);
                         intent.putExtra("Email", email2);
                         intent.putExtra("Osob", ilosc);
+                        intent.putExtra("WylaczStolik1",WylaczStolik1);
+                        intent.putExtra("WylaczStolik2",WylaczStolik2);
+                        intent.putExtra("WylaczStolik4",WylaczStolik4);
+                        intent.putExtra("WylaczStolik5",WylaczStolik5);
                         startActivity(intent);
                     }
                 }
