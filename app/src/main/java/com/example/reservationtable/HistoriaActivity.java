@@ -57,30 +57,19 @@ public class HistoriaActivity extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int rok, int miesiac, int dzien) {
                 historiaList.clear();
                 kalendarzrecyclerview.getAdapter().notifyDataSetChanged();
-                if(miesiac==0){
-                    Miesiac="Styczeń";
-                }else if(miesiac==1){
-                    Miesiac="Luty";
-                }else if(miesiac==2){
-                    Miesiac="Marzec";
-                }else if(miesiac==3){
-                    Miesiac="Kwiecień";
-                }else if(miesiac==4){
-                    Miesiac="Maj";
-                }else if(miesiac==5){
-                    Miesiac="Czerwiec";
-                }else if(miesiac==6){
-                    Miesiac="Lipiec";
-                }else if(miesiac==7){
-                    Miesiac="Sierpień";
-                }else if(miesiac==8){
-                    Miesiac="Wrzesień";
-                }else if(miesiac==9){
-                    Miesiac="Październik";
-                }else if(miesiac==10){
-                    Miesiac="Listopad";
-                }else if(miesiac==11){
-                    Miesiac="Grudzień";
+                switch (miesiac){
+                    case 0: Miesiac="Styczeń";break;
+                    case 1: Miesiac="Luty";break;
+                    case 2: Miesiac="Marzec";break;
+                    case 3: Miesiac="Kwiecień";break;
+                    case 4: Miesiac="Maj";break;
+                    case 5: Miesiac="Czerwiec";break;
+                    case 6: Miesiac="Lipiec";break;
+                    case 7: Miesiac="Sierpień";break;
+                    case 8: Miesiac="Wrzesień";break;
+                    case 9: Miesiac="Październik";break;
+                    case 10: Miesiac="Listopad";break;
+                    case 11: Miesiac="Grudzień";break;
                 }
                 String data=dzien+" "+Miesiac+" "+rok;
                 firebaseFirestore.collection("Stoliknr1").whereEqualTo("Data",data).addSnapshotListener(new EventListener<QuerySnapshot>() {
