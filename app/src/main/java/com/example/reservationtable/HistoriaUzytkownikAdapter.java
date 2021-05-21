@@ -11,34 +11,34 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class HistoriaUserAdapter extends RecyclerView.Adapter<HistoriaUserAdapter.ViewHolder> {
+public class HistoriaUzytkownikAdapter extends RecyclerView.Adapter<HistoriaUzytkownikAdapter.ViewHolder> {
 
-    public List<Rezerwacja> historiaUserList;
-    public HistoriaUserActivity historiaUserActivity;
+    public List<Rezerwacja> historiaUzytkownikList;
+    public HistoriaUzytkownikActivity historiaUzytkownikActivity;
 
-    public HistoriaUserAdapter(HistoriaUserActivity historiaUserActivity,List<Rezerwacja> historiaUserList){
-        this.historiaUserActivity=historiaUserActivity;
-        this.historiaUserList=historiaUserList;
+    public HistoriaUzytkownikAdapter(HistoriaUzytkownikActivity historiaUzytkownikActivity,List<Rezerwacja> historiaUserList){
+        this.historiaUzytkownikActivity=historiaUzytkownikActivity;
+        this.historiaUzytkownikList=historiaUserList;
     }
 
     @NonNull
     @Override
-    public HistoriaUserAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public HistoriaUzytkownikAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_item,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HistoriaUserAdapter.ViewHolder holder, int position) {
-        holder.imieText.setText(historiaUserList.get(position).getImie());
-        holder.nazwiskotext.setText(historiaUserList.get(position).getNazwisko());
-        holder.stolikText.setText(historiaUserList.get(position).getStolik());
-        holder.godzinaText.setText(historiaUserList.get(position).getGodzina());
+    public void onBindViewHolder(@NonNull HistoriaUzytkownikAdapter.ViewHolder holder, int position) {
+        holder.imieText.setText(historiaUzytkownikList.get(position).getImie());
+        holder.nazwiskotext.setText(historiaUzytkownikList.get(position).getNazwisko());
+        holder.stolikText.setText(historiaUzytkownikList.get(position).getStolik());
+        holder.godzinaText.setText(historiaUzytkownikList.get(position).getGodzina());
     }
 
     @Override
     public int getItemCount() {
-        return historiaUserList.size();
+        return historiaUzytkownikList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -64,10 +64,10 @@ public class HistoriaUserAdapter extends RecyclerView.Adapter<HistoriaUserAdapte
 
         @Override
         public void onClick(View view) {
-            Rezerwacja rezerwacja=historiaUserList.get(getAdapterPosition());
-            Intent intent=new Intent(historiaUserActivity, RezerwacjaInfo.class);
+            Rezerwacja rezerwacja=historiaUzytkownikList.get(getAdapterPosition());
+            Intent intent=new Intent(historiaUzytkownikActivity, RezerwacjaInfo.class);
             intent.putExtra("rezerwacja",rezerwacja);
-            historiaUserActivity.startActivity(intent);
+            historiaUzytkownikActivity.startActivity(intent);
         }
     }
 }

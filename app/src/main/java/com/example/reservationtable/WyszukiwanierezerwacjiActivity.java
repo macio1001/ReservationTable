@@ -26,142 +26,57 @@ import java.util.List;
 
 public class WyszukiwanierezerwacjiActivity extends AppCompatActivity {
 
-    private static final String TAG="FireLog";
-    TextView wyszukiwanie;
-    EditText kod;
-    Button szukaj;
-    String Wyszukanie;
+    private static final String TAG="WyszukiwanieActivity";
+    EditText editKod;
+    Button buttonSzukaj;
+    RecyclerView recyclerviewRezerwacja;
 
-    private RecyclerView recyclerView;
-    private List<Rezerwacja> rezerwacjaList;
-    private FirebaseFirestore firebaseFirestore;
-    private RezerwacjaAdapter rezerwacjaAdapter;
+    List<Rezerwacja> rezerwacjaList;
+    RezerwacjaAdapter rezerwacjaAdapter;
+
+    FirebaseFirestore firebaseFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wyszukiwanierezerwacji);
 
-        wyszukiwanie=findViewById(R.id.wyszukiwanietextView);
-        kod=findViewById(R.id.kodeditText);
-        szukaj=findViewById(R.id.szukajbutton);
+        editKod=findViewById(R.id.kodeditText);
+        buttonSzukaj=findViewById(R.id.szukajbutton);
 
-        recyclerView=(RecyclerView) findViewById(R.id.rezerwujlist);
+        recyclerviewRezerwacja=(RecyclerView) findViewById(R.id.rezerwujlist);
         rezerwacjaList=new ArrayList<>();
         rezerwacjaAdapter=new RezerwacjaAdapter(this,rezerwacjaList);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(rezerwacjaAdapter);
+        recyclerviewRezerwacja.setHasFixedSize(true);
+        recyclerviewRezerwacja.setLayoutManager(new LinearLayoutManager(this));
+        recyclerviewRezerwacja.setAdapter(rezerwacjaAdapter);
 
         firebaseFirestore=FirebaseFirestore.getInstance();
 
-        szukaj.setOnClickListener(new View.OnClickListener() {
+        buttonSzukaj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Wyszukanie=kod.getText().toString();
+                String wyszukanie=editKod.getText().toString();
 
-                firebaseFirestore.collection("Stoliknr1").whereEqualTo("Nazwisko",Wyszukanie).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!=null){
-                            Log.d(TAG,"Error:"+e.getMessage());
-                        }else{
-                            for (DocumentChange documentChange:queryDocumentSnapshots.getDocumentChanges()){
-                                if(documentChange.getType()==DocumentChange.Type.ADDED){
-                                    Rezerwacja rezerwacja=documentChange.getDocument().toObject(Rezerwacja.class);
-                                    rezerwacjaList.add(rezerwacja);
+                for(int i=0;i<=6;i++) {
+                    firebaseFirestore.collection("Stoliknr1").whereEqualTo("Nazwisko", wyszukanie).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                        @Override
+                        public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                            if (e != null) {
+                                Log.d(TAG, "Error:" + e.getMessage());
+                            } else {
+                                for (DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()) {
+                                    if (documentChange.getType() == DocumentChange.Type.ADDED) {
+                                        Rezerwacja rezerwacja = documentChange.getDocument().toObject(Rezerwacja.class);
+                                        rezerwacjaList.add(rezerwacja);
 
-                                    rezerwacjaAdapter.notifyDataSetChanged();
+                                        rezerwacjaAdapter.notifyDataSetChanged();
+                                    }
                                 }
                             }
                         }
-                    }
-                });
-                firebaseFirestore.collection("Stoliknr2").whereEqualTo("Nazwisko",Wyszukanie).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!=null){
-                            Log.d(TAG,"Error:"+e.getMessage());
-                        }else{
-                            for (DocumentChange documentChange:queryDocumentSnapshots.getDocumentChanges()){
-                                if(documentChange.getType()==DocumentChange.Type.ADDED){
-                                    Rezerwacja rezerwacja=documentChange.getDocument().toObject(Rezerwacja.class);
-                                    rezerwacjaList.add(rezerwacja);
-
-                                    rezerwacjaAdapter.notifyDataSetChanged();
-                                }
-                            }
-                        }
-                    }
-                });
-                firebaseFirestore.collection("Stoliknr3").whereEqualTo("Nazwisko",Wyszukanie).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!=null){
-                            Log.d(TAG,"Error:"+e.getMessage());
-                        }else{
-                            for (DocumentChange documentChange:queryDocumentSnapshots.getDocumentChanges()){
-                                if(documentChange.getType()==DocumentChange.Type.ADDED){
-                                    Rezerwacja rezerwacja=documentChange.getDocument().toObject(Rezerwacja.class);
-                                    rezerwacjaList.add(rezerwacja);
-
-                                    rezerwacjaAdapter.notifyDataSetChanged();
-                                }
-                            }
-                        }
-                    }
-                });
-                firebaseFirestore.collection("Stoliknr4").whereEqualTo("Nazwisko",Wyszukanie).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!=null){
-                            Log.d(TAG,"Error:"+e.getMessage());
-                        }else{
-                            for (DocumentChange documentChange:queryDocumentSnapshots.getDocumentChanges()){
-                                if(documentChange.getType()==DocumentChange.Type.ADDED){
-                                    Rezerwacja rezerwacja=documentChange.getDocument().toObject(Rezerwacja.class);
-                                    rezerwacjaList.add(rezerwacja);
-
-                                    rezerwacjaAdapter.notifyDataSetChanged();
-                                }
-                            }
-                        }
-                    }
-                });
-                firebaseFirestore.collection("Stoliknr5").whereEqualTo("Nazwisko",Wyszukanie).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!=null){
-                            Log.d(TAG,"Error:"+e.getMessage());
-                        }else{
-                            for (DocumentChange documentChange:queryDocumentSnapshots.getDocumentChanges()){
-                                if(documentChange.getType()==DocumentChange.Type.ADDED){
-                                    Rezerwacja rezerwacja=documentChange.getDocument().toObject(Rezerwacja.class);
-                                    rezerwacjaList.add(rezerwacja);
-
-                                    rezerwacjaAdapter.notifyDataSetChanged();
-                                }
-                            }
-                        }
-                    }
-                });
-                firebaseFirestore.collection("Stoliknr6").whereEqualTo("Nazwisko",Wyszukanie).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!=null){
-                            Log.d(TAG,"Error:"+e.getMessage());
-                        }else{
-                            for (DocumentChange documentChange:queryDocumentSnapshots.getDocumentChanges()){
-                                if(documentChange.getType()==DocumentChange.Type.ADDED){
-                                    Rezerwacja rezerwacja=documentChange.getDocument().toObject(Rezerwacja.class);
-                                    rezerwacjaList.add(rezerwacja);
-
-                                    rezerwacjaAdapter.notifyDataSetChanged();
-                                }
-                            }
-                        }
-                    }
-                });
+                    });
+                }
             }
         });
     }

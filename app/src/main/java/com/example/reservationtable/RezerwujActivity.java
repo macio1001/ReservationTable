@@ -6,26 +6,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 
-import com.google.android.gms.flags.Singletons;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,27 +30,31 @@ import java.util.Calendar;
 
 public class RezerwujActivity extends AppCompatActivity{
 
-    private static final String TAG="RezerwujActivity";
+    TextView textWybierzDate,textIloscOsob,textWybranaData,textWybierzGodzine,textWybranaGodzina,textOstrzezenie;
+    Button buttonDalej;
+    RadioGroup iloscosobGroup;
+    RadioButton osoba1,osoba2,osoba3,osoba4,osoba5,osoba6;
+    DatePickerDialog.OnDateSetListener onDateSetListener;
 
-    private TextView wybierzdate,iloscosob,choosedate,wybierzgodzine,choosehour,ostrzezenie;
-    private Button dalej;
-    private RadioGroup iloscosobGroup;
-    private RadioButton osoba1,osoba2,osoba3,osoba4,osoba5,osoba6;
-    private DatePickerDialog.OnDateSetListener onDateSetListener;
     String Miesiac,Minuta;
     String wybranadata,wybranagodzina,Wybrana;
     int ilosc=0,minute,Minute;
     FirebaseFirestore firebaseFirestore;
     Boolean zajety1=false,zajety2=false,zajety3=false,zajety4=false,zajety5=false,zajety6=false,WylaczStolik1=false,WylaczStolik2=false,WylaczStolik4=false,WylaczStolik5=false;
 
+    private static final String TAG="RezerwujActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rezerwuj);
 
-        wybierzdate=findViewById(R.id.textView);
-        iloscosob=findViewById(R.id.howmanyperson);
+        textWybierzDate=findViewById(R.id.wybierzdateTextView);
+        textIloscOsob=findViewById(R.id.howmanyperson);
+        textOstrzezenie=findViewById(R.id.ostrzezenieTextView);
+        textWybranaData=findViewById(R.id.wybranadataTextView);
+        textWybierzGodzine=findViewById(R.id.wybierzgodzineTextView);
+        textWybranaGodzina=findViewById(R.id.wybranagodzinatextView);
         iloscosobGroup=findViewById(R.id.RadioGroup);
         osoba1=findViewById(R.id.radioButton);
         osoba2=findViewById(R.id.radioButton2);
@@ -64,20 +62,16 @@ public class RezerwujActivity extends AppCompatActivity{
         osoba4=findViewById(R.id.radioButton4);
         osoba5=findViewById(R.id.radioButton5);
         osoba6=findViewById(R.id.radioButton6);
-        choosedate=findViewById(R.id.choosedate);
-        wybierzgodzine=findViewById(R.id.textView2);
-        choosehour=findViewById(R.id.choosehour);
-        dalej=findViewById(R.id.dalejBtn);
-        ostrzezenie=findViewById(R.id.warningTextView);
+        buttonDalej=findViewById(R.id.dalejBtn);
 
         firebaseFirestore=FirebaseFirestore.getInstance();
 
-        Intent intent1=getIntent();
-        String email2=intent1.getStringExtra("Email");
+        Intent intent=getIntent();
+        String email=intent.getStringExtra("Email");
 
         String iloscosob[]={"Wybierz ilosc osob","1","2","3","4","5","6"};
 
-        wybierzdate.setOnClickListener(new View.OnClickListener() {
+        textWybierzDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar kalendarz=Calendar.getInstance();
@@ -96,27 +90,14 @@ public class RezerwujActivity extends AppCompatActivity{
         onDateSetListener=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int rok, int miesiac, int dzien) {
-                switch (miesiac){
-                    case 0: Miesiac="Styczeń";break;
-                    case 1: Miesiac="Luty";break;
-                    case 2: Miesiac="Marzec";break;
-                    case 3: Miesiac="Kwiecień";break;
-                    case 4: Miesiac="Maj";break;
-                    case 5: Miesiac="Czerwiec";break;
-                    case 6: Miesiac="Lipiec";break;
-                    case 7: Miesiac="Sierpień";break;
-                    case 8: Miesiac="Wrzesień";break;
-                    case 9: Miesiac="Październik";break;
-                    case 10: Miesiac="Listopad";break;
-                    case 11: Miesiac="Grudzień";break;
-                }
-                choosedate.setText(dzien+" "+Miesiac+" "+rok);
-                wybranadata=dzien+" "+Miesiac+" "+rok;
+                String nazwaMesiaca=RezerwacjaUtils.getNazwaMiesiaca(miesiac);
+                textWybranaData.setText(dzien+" "+nazwaMesiaca+" "+rok);
+                wybranadata=dzien+" "+nazwaMesiaca+" "+rok;
             }
         };
 
 
-        wybierzgodzine.setOnClickListener(new View.OnClickListener() {
+        textWybierzGodzine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar kalendarz1=Calendar.getInstance();
@@ -128,19 +109,19 @@ public class RezerwujActivity extends AppCompatActivity{
                 zajety4=false;
                 zajety5=false;
                 zajety6=false;
-                ostrzezenie.setText("");
+                textOstrzezenie.setText("");
                 iloscosobGroup.clearCheck();
                 TimePickerDialog timePickerDialog=new TimePickerDialog(RezerwujActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int godzina, int minuta) {
-                        dalej.setClickable(true);
+                        buttonDalej.setClickable(true);
                         if (minuta>=0 && minuta<10){
                             Minuta="0"+minuta;
                         }else{
                             Minuta=String.valueOf(minuta);
                         }
                         wybranagodzina=godzina+":"+Minuta;
-                        choosehour.setText(godzina+":"+Minuta);
+                        textWybranaGodzina.setText(godzina+":"+Minuta);
                         Wybrana=wybranagodzina;
                         Minute=Integer.valueOf(Minuta);
                         minute=Minute-15;
@@ -305,8 +286,8 @@ public class RezerwujActivity extends AppCompatActivity{
                             WylaczStolik2=true;
                             Log.d(TAG,"Lalala: Gotowosc jest:"+WylaczStolik2);
                         }else if(zajety1==true && zajety2==true){
-                            ostrzezenie.setText("W tym terminie stoliki są zajęte");
-                            dalej.setClickable(false);
+                            textOstrzezenie.setText("W tym terminie stoliki są zajęte");
+                            buttonDalej.setClickable(false);
                         }
                         break;
                     case R.id.radioButton2:
@@ -320,15 +301,15 @@ public class RezerwujActivity extends AppCompatActivity{
                             WylaczStolik2=true;
                             Log.d(TAG,"Lalala: Gotowosc jest:"+WylaczStolik2);
                         }else if(zajety1==true && zajety2==true){
-                            ostrzezenie.setText("O tej godzinie stoliki dla 2 osób są zajęte!Proszę wybrać inną godzinę!");
-                            dalej.setClickable(false);
+                            textOstrzezenie.setText("O tej godzinie stoliki dla 2 osób są zajęte!Proszę wybrać inną godzinę!");
+                            buttonDalej.setClickable(false);
                         }
                         break;
                     case R.id.radioButton3:
                         ilosc=3;
                         if(zajety3==true){
-                            ostrzezenie.setText("W tym terminie stoliki dla 3 osób są zajęte!Proszę wybrać inną godzinę!");
-                            dalej.setClickable(false);
+                            textOstrzezenie.setText("W tym terminie stoliki dla 3 osób są zajęte!Proszę wybrać inną godzinę!");
+                            buttonDalej.setClickable(false);
                         }
                         break;
                     case R.id.radioButton4:
@@ -342,31 +323,31 @@ public class RezerwujActivity extends AppCompatActivity{
                             WylaczStolik5=true;
                             Log.d(TAG,"Lalala: Gotowosc jest:"+WylaczStolik5);
                         }else if(zajety4==true && zajety5==true){
-                            ostrzezenie.setText("W tym terminie stoliki dla 4 osób są zajęte! Proszę wybrać inną godzinę!");
-                            dalej.setClickable(false);
+                            textOstrzezenie.setText("W tym terminie stoliki dla 4 osób są zajęte! Proszę wybrać inną godzinę!");
+                            buttonDalej.setClickable(false);
                         }
                         break;
                     case R.id.radioButton5:
                         ilosc=5;
                         if(zajety5==true){
-                            ostrzezenie.setText("W tym terminie stoliki dla 6 osób są zajęte!Proszę wybrać inną godzinę!");
-                            dalej.setClickable(false);
+                            textOstrzezenie.setText("W tym terminie stoliki dla 6 osób są zajęte!Proszę wybrać inną godzinę!");
+                            buttonDalej.setClickable(false);
                         }
                         break;
                     case R.id.radioButton6:
                         ilosc=6;
                         if(zajety6==true){
-                            ostrzezenie.setText("W tym terminie stoliki dla 6 osób są zajęte!Proszę wybrać inną godzinę!");
-                            dalej.setClickable(false);
+                            textOstrzezenie.setText("W tym terminie stoliki dla 6 osób są zajęte!Proszę wybrać inną godzinę!");
+                            buttonDalej.setClickable(false);
                         }
                         break;
                 }
             }
         });
-            dalej.setOnClickListener(new View.OnClickListener() {
+            buttonDalej.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if ((wybierzdate == null) && (wybranagodzina == null) && (ilosc == 0)) {
+                    if ((wybranadata == null) && (wybranagodzina == null) && (ilosc == 0)) {
                         Toast.makeText(RezerwujActivity.this, "Nie dokonałes wyboru obowiązkowych opcji!", Toast.LENGTH_SHORT).show();
                     } else if (wybranagodzina == null) {
                         Toast.makeText(RezerwujActivity.this, "Nie dokonałes wyboru godziny!", Toast.LENGTH_SHORT).show();
@@ -374,19 +355,11 @@ public class RezerwujActivity extends AppCompatActivity{
                         Toast.makeText(RezerwujActivity.this, "Nie dokonałes wyboru daty!", Toast.LENGTH_SHORT).show();
                     } else if (ilosc == 0) {
                         Toast.makeText(RezerwujActivity.this, "Nie dokonałes wyboru ilosci osob!!", Toast.LENGTH_SHORT).show();
-                    } else if (zajety1 == true && zajety2 == true) {
-                        ostrzezenie.setText("W tym terminie stoliki dla osób są zajęte! Proszę wybrać inny termin lub godzinę");
-                    } else if (zajety4 == true && zajety5 == true) {
-                        ostrzezenie.setText("W tym terminie stoliki dla czterech osób są zajęte! Proszę wybrać inny termin lub godzinę");
-                    } else if (zajety3 == true) {
-                        ostrzezenie.setText("W tym terminie stoliki dla trzech osób są zajęte! Proszę wybrać inny termin lub godzinę");
-                    } else if (zajety6 == true) {
-                        ostrzezenie.setText("W tym terminie stoliki dla sześćiu osób są zajęte! Proszę wybrać inny termin lub godzinę");
                     } else {
                         Intent intent = new Intent(RezerwujActivity.this, StolikiActivity.class);
                         intent.putExtra("Data", wybranadata);
                         intent.putExtra("Godzina", wybranagodzina);
-                        intent.putExtra("Email", email2);
+                        intent.putExtra("Email", email);
                         intent.putExtra("Osob", ilosc);
                         intent.putExtra("WylaczStolik1",WylaczStolik1);
                         intent.putExtra("WylaczStolik2",WylaczStolik2);

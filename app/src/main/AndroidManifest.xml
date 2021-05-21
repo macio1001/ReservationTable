@@ -12,20 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RezerwacjaInfo" />
-        <activity android:name=".StolikiOff" />
+        <activity android:name=".StolikiOffActivity" />
         <activity android:name=".StolikiActivity" />
         <activity android:name=".HistoriaActivity" />
         <activity android:name=".SkanerActivity" />
         <activity android:name=".DaneosoboweActivity" />
         <activity android:name=".RezerwujActivity" />
-        <activity android:name=".MenuklientActivity" />
-        <activity android:name=".HistoriaUserActivity"/>
+        <activity android:name=".MenuKlientActivity" />
+        <activity android:name=".HistoriaUzytkownikActivity"/>
         <activity android:name=".WyszukiwanierezerwacjiActivity"
             android:windowSoftInputMode="adjustPan|adjustResize"/>
-        <activity android:name=".MenurestauracjaActivity" />
-        <activity android:name=".PrzypomnieniehaslaActivity" />
+        <activity android:name=".MenuRestauracjaActivity" />
+        <activity android:name=".PrzypomnienieHaslaActivity" />
         <activity android:name=".RejestacjaActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LogowanieActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

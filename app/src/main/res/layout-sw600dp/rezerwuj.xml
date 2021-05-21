@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="300dp"
-        android:layout_height="200sp"
+        android:layout_width="295dp"
+        android:layout_height="183dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="30dp"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
         android:layout_marginLeft="130dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="130dp"
         android:layout_marginRight="130dp"
         android:text="Wybierz datę"
@@ -99,34 +99,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wybierzgodzineTextView" />
 
+
     <Button
         android:id="@+id/dalejBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
         android:layout_marginLeft="130dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="130dp"
         android:layout_marginRight="130dp"
-        android:layout_marginBottom="10dp"
         android:text="Dalej"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ostrzezenieTextView" />
 
     <TextView
         android:id="@+id/ostrzezenieTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="5dp"
+        android:layout_height="15dp"
         android:layout_marginStart="130dp"
         android:layout_marginLeft="130dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="130dp"
         android:layout_marginRight="130dp"
         android:textColor="@color/design_default_color_error"
-        app:layout_constraintBottom_toTopOf="@+id/dalejBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"/>
-
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RadioGroup" />
 
     <RadioGroup
         android:id="@+id/RadioGroup"
@@ -136,7 +137,7 @@
         android:layout_marginLeft="175dp"
         android:layout_marginEnd="175dp"
         android:layout_marginRight="175dp"
-        app:layout_constraintBottom_toTopOf="@+id/ostrzezenieTextView"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/howmanyperson">
@@ -145,44 +146,43 @@
             android:id="@+id/radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/_1_osoba"
-            android:checked="false"/>
+            android:checked="false"
+            android:text="@string/_1_osoba" />
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_2_osoby"
-            android:checked="false"/>
+            android:checked="false"
+            android:text="@string/_2_osoby" />
 
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_3_osoby"
-            android:checked="false"/>
+            android:checked="false"
+            android:text="@string/_3_osoby" />
 
         <RadioButton
             android:id="@+id/radioButton4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_4_osoby"
-            android:checked="false"/>
+            android:checked="false"
+            android:text="@string/_4_osoby" />
 
         <RadioButton
             android:id="@+id/radioButton5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_5_os_b"
-            android:checked="false"/>
+            android:checked="false"
+            android:text="@string/_5_os_b" />
 
         <RadioButton
             android:id="@+id/radioButton6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_6_os_b"
-            android:checked="false"/>
+            android:checked="false"
+            android:text="@string/_6_os_b" />
     </RadioGroup>
 
 

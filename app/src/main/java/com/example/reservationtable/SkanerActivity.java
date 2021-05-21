@@ -26,10 +26,12 @@ import com.google.zxing.BarcodeFormat;
 import java.io.IOException;
 
 public class SkanerActivity extends AppCompatActivity {
-    private SurfaceView surfaceView;
-    private CameraSource cameraSource;
-    private TextView textView;
-    private BarcodeDetector barcodeDetector;
+    SurfaceView surfaceKamera;
+    TextView textKodQR;
+
+    CameraSource cameraSource;
+    BarcodeDetector barcodeDetector;
+
     public static final int CAMERA_PERMISSION_CODE=100;
 
     @Override
@@ -37,8 +39,8 @@ public class SkanerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.skaner);
 
-        surfaceView=findViewById(R.id.camera);
-        textView=findViewById(R.id.textskaner);
+        surfaceKamera=findViewById(R.id.camera);
+        textKodQR=findViewById(R.id.textskaner);
 
 
         checkPermission(Manifest.permission.CAMERA,CAMERA_PERMISSION_CODE);
@@ -46,7 +48,7 @@ public class SkanerActivity extends AppCompatActivity {
         barcodeDetector=new BarcodeDetector.Builder(getApplicationContext()).setBarcodeFormats(Barcode.QR_CODE).build();
         cameraSource=new CameraSource.Builder(getApplicationContext(),barcodeDetector).setRequestedPreviewSize(640,480).build();
 
-        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
+        surfaceKamera.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
                 if(ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
@@ -82,10 +84,10 @@ public class SkanerActivity extends AppCompatActivity {
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> grcode=detections.getDetectedItems();
                 if(grcode.size() !=0){
-                    textView.post(new Runnable() {
+                    textKodQR.post(new Runnable() {
                         @Override
                         public void run() {
-                            textView.setText(grcode.valueAt(0).displayValue);
+                            textKodQR.setText(grcode.valueAt(0).displayValue);
                         }
                     });
                 }

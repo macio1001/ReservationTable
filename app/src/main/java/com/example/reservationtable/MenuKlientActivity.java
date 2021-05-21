@@ -16,53 +16,45 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.function.LongFunction;
 
-public class MenuklientActivity extends AppCompatActivity {
-    private static final String TAG="FireLog";
-    ImageView logo;
-    Button historia,rezerwuj;
+public class MenuKlientActivity extends AppCompatActivity {
+    Button buttonHistoria,buttonRezerwuj;
     FirebaseAuth firebaseAuth;
-    LoginActivity loginActivity;
-    FloatingActionButton wyloguj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menuklient);
 
-        logo=findViewById(R.id.logoimageView);
-        historia=findViewById(R.id.historiabutton);
-        rezerwuj=findViewById(R.id.rezerwujbutton);
-        wyloguj=findViewById(R.id.wylogujbtn);
+        buttonHistoria=findViewById(R.id.historiabutton);
+        buttonRezerwuj=findViewById(R.id.rezerwujbutton);
         firebaseAuth = FirebaseAuth.getInstance();
 
-        Intent intent1=getIntent();
-        String email=intent1.getStringExtra("Email");
+        Intent intent=getIntent();
+        String email=intent.getStringExtra("Email");
 
 
-        historia.setOnClickListener(new View.OnClickListener() {
+        buttonHistoria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MenuklientActivity.this,HistoriaUserActivity.class);
+                Intent intent=new Intent(MenuKlientActivity.this,HistoriaUzytkownikActivity.class);
                 intent.putExtra("Email",email);
                 startActivity(intent);
-                //startActivity(new Intent(MenuklientActivity.this,HistoriaUserActivity.class));
             }
         });
 
-        rezerwuj.setOnClickListener(new View.OnClickListener() {
+        buttonRezerwuj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MenuklientActivity.this,RezerwujActivity.class);
+                Intent intent=new Intent(MenuKlientActivity.this,RezerwujActivity.class);
                 intent.putExtra("Email",email);
                 startActivity(intent);
-                //startActivity(new Intent(MenuklientActivity.this,RezerwujActivity.class));
             }
         });
     }
 
     public void Wyloguj(View view){
         firebaseAuth.signOut();
-        Intent intent=new Intent(MenuklientActivity.this,LoginActivity.class);
+        Intent intent=new Intent(MenuKlientActivity.this,LogowanieActivity.class);
         intent.putExtra("finish",true);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

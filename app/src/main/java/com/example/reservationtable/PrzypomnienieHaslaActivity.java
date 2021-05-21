@@ -19,13 +19,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.auth.FirebaseAuthCredentialsProvider;
 
-public class PrzypomnieniehaslaActivity extends AppCompatActivity {
+public class PrzypomnienieHaslaActivity extends AppCompatActivity {
 
-    EditText email;
-    TextView przypomnienie;
-    Button przypomnij;
-    ImageView logo;
-    String Email;
+    EditText editEmail;
+    TextView textPrzypomnienie;
+    Button buttonPrzypomnij;
+
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -33,27 +32,26 @@ public class PrzypomnieniehaslaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.przypomnieniehasla);
 
-        logo=findViewById(R.id.logoimageView);
-        email=findViewById(R.id.emaileditText);
-        przypomnienie=findViewById(R.id.przypomnijtextview);
-        przypomnij=findViewById(R.id.przypomnijbutton);
+        editEmail=findViewById(R.id.emaileditText);
+        textPrzypomnienie=findViewById(R.id.przypomnijtextview);
+        buttonPrzypomnij=findViewById(R.id.przypomnijbutton);
 
         firebaseAuth= FirebaseAuth.getInstance();
 
-        przypomnij.setOnClickListener(new View.OnClickListener() {
+        buttonPrzypomnij.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Email=email.getText().toString();
-                if(!TextUtils.isEmpty(Email)) {
-                    firebaseAuth.sendPasswordResetEmail(Email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                String email=editEmail.getText().toString();
+                if(!TextUtils.isEmpty(email)) {
+                    firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(PrzypomnieniehaslaActivity.this, "Hasło wyslane na adres e-mail",
+                                Toast.makeText(PrzypomnienieHaslaActivity.this, "Hasło wyslane na adres e-mail",
                                         Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(PrzypomnieniehaslaActivity.this,LoginActivity.class));
+                                startActivity(new Intent(PrzypomnienieHaslaActivity.this,LogowanieActivity.class));
                             } else {
-                                Toast.makeText(PrzypomnieniehaslaActivity.this, task.getException().getMessage(),
+                                Toast.makeText(PrzypomnienieHaslaActivity.this, task.getException().getMessage(),
                                         Toast.LENGTH_LONG).show();
                             }
                         }

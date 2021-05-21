@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -37,19 +36,20 @@ import java.util.Map;
 
 public class DaneosoboweActivity extends AppCompatActivity {
 
-    TextView daneosobowe,imie,nazwisko,email,telefon,iloscosob,godzina,data;
-    EditText imieedit,nazwiskoedit,emailedit,telefonedit,iloscosobedit,godzinaedit,dataedit;
-    Button rezerwuj;
-    CheckBox wyborgaleria;
-    String Imie,Nazwisko,Email,Telefon,Ilosc;
-    public FirebaseFirestore firebaseFirestore;
-    public FirebaseStorage firebaseStorage;
-    public StorageReference storageReference;
-    private static final String TAG="FireLog";
-    public final static int QRCodeWidth=500;
-    ImageView kodQR;
+    private static final String TAG="DaneOsobowe";
+    EditText editImie,editNazwisko,editEmail,editTelefon,editIloscOsob,editGodzina,editData;
+    Button buttonRezerwuj;
+    CheckBox checkZapiszwGalerii;
+    ImageView imageKodQR;
     Bitmap bitmap;
-    String Text,stolik1;
+
+    String ilosc,stolik,email,daneRezerwacji;
+
+    FirebaseFirestore firebaseFirestore;
+    FirebaseStorage firebaseStorage;
+    StorageReference storageReference;
+
+    public final static int QRCodeWidth=500;
 
 
     @Override
@@ -57,79 +57,69 @@ public class DaneosoboweActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.daneosobowe);
 
-        daneosobowe=findViewById(R.id.naglowektextView);
-        imie=findViewById(R.id.imietextView);
-        imieedit=findViewById(R.id.imieeditText);
-        nazwisko=findViewById(R.id.nazwiskotextView);
-        nazwiskoedit=findViewById(R.id.nazwiskoeditText);
-        email=findViewById(R.id.emailtextView);
-        emailedit=findViewById(R.id.emaileditText);
-        telefon=findViewById(R.id.telefontextView);
-        telefonedit=findViewById(R.id.numereditText);
-        rezerwuj=findViewById(R.id.rezerwujbutton);
-        wyborgaleria=findViewById(R.id.dowloadtogallery);
-        iloscosob=findViewById(R.id.iloscosobtextView);
-        iloscosobedit=findViewById(R.id.iloscosobeditText);
-        godzina=findViewById(R.id.godzinatextView);
-        godzinaedit=findViewById(R.id.godzinaeditText);
-        data=findViewById(R.id.datatextView);
-        dataedit=findViewById(R.id.dataeditText);
-        kodQR=findViewById(R.id.imageView8);
+        editImie=findViewById(R.id.imieeditText);
+        editNazwisko=findViewById(R.id.nazwiskoeditText);
+        editEmail=findViewById(R.id.emaileditText);
+        editTelefon=findViewById(R.id.numereditText);
+        editIloscOsob=findViewById(R.id.iloscosobeditText);
+        editGodzina=findViewById(R.id.godzinaeditText);
+        editData=findViewById(R.id.dataeditText);
+        buttonRezerwuj=findViewById(R.id.rezerwujbutton);
+        checkZapiszwGalerii=findViewById(R.id.table3checkBox);
+        imageKodQR=findViewById(R.id.imageView8);
 
-        Intent intent1=getIntent();
-        String wybranadata2=intent1.getStringExtra("Data");
-        String wybranagodzina2=intent1.getStringExtra("Godzina");
-        String Email1=intent1.getStringExtra("Email");
-        int stolik=intent1.getIntExtra("Stolik",0);
-        int ilosc2=intent1.getIntExtra("Osob",0);
-        String godzinakoncowa2=intent1.getStringExtra("GodzinaKoncowa");
+        Intent intent=getIntent();
+        String wybranaData=intent.getStringExtra("Data");
+        String wybranaGodzina=intent.getStringExtra("Godzina");
+        String emailUzytkownika=intent.getStringExtra("Email");
+        int wybranyStolik=intent.getIntExtra("Stolik",0);
+        int wybranaIloscOsob=intent.getIntExtra("Osob",0);
 
-        Ilosc=String.valueOf(ilosc2);
+        ilosc=String.valueOf(wybranaIloscOsob);
+        stolik=String.valueOf(wybranyStolik);
 
-        stolik1=String.valueOf(stolik);
-        String podanyemail=Email1;
+        editIloscOsob.setText(String.valueOf(wybranaIloscOsob));
+        editGodzina.setText(wybranaGodzina);
+        editData.setText(wybranaData);
+        editEmail.setText(emailUzytkownika);
 
-        iloscosobedit.setText(Ilosc);
-        godzinaedit.setText(wybranagodzina2);
-        dataedit.setText(wybranadata2);
-        emailedit.setText(podanyemail);
-
-        Map<String,Object> daneosobowe=new HashMap<>();
         firebaseFirestore= FirebaseFirestore.getInstance();
         firebaseStorage=FirebaseStorage.getInstance();
         storageReference=firebaseStorage.getReference();
 
+        Map<String,Object> daneRezerwacyjne=new HashMap<>();
 
-            rezerwuj.setOnClickListener(new View.OnClickListener() {
+            buttonRezerwuj.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Imie = imieedit.getText().toString();
-                    Nazwisko = nazwiskoedit.getText().toString();
-                    Email = emailedit.getText().toString();
-                    Telefon = telefonedit.getText().toString();
-                        if (Imie.trim().length() == 0) {
+                    String imie = editImie.getText().toString();
+                    String nazwisko = editNazwisko.getText().toString();
+                    email = editEmail.getText().toString();
+                    String telefon = editTelefon.getText().toString();
+                        if (imie.trim().length() == 0) {
                             Toast.makeText(DaneosoboweActivity.this, "Nie wprowadziłeś swojego imienia!", Toast.LENGTH_SHORT).show();
-                        } else if (Nazwisko.trim().length() == 0) {
+                        } else if (nazwisko.trim().length() == 0) {
                             Toast.makeText(DaneosoboweActivity.this, "Nie wprowadziłeś swojego nazwiska!", Toast.LENGTH_SHORT).show();
-                        } else if (Email.trim().length() == 0) {
+                        } else if (email.trim().length() == 0) {
                             Toast.makeText(DaneosoboweActivity.this, "Nie wprowadziłeś swojego emaila!", Toast.LENGTH_SHORT).show();
-                        } else if (Telefon.trim().length() == 0) {
+                        } else if (telefon.trim().length() == 0) {
                             Toast.makeText(DaneosoboweActivity.this, "Nie wprowadziłeś swojego numeru telefonu!", Toast.LENGTH_SHORT).show();
                         }
 
-                    Text = Imie + " " + Nazwisko + " " + Email + " " + Telefon + " " + stolik + " " + wybranadata2 + " " + wybranagodzina2 + " " + godzinakoncowa2 + " " + ilosc2;
+                    daneRezerwacji ="Imię i Nazwisko:" + imie + " " + nazwisko + " Email:" + email + " Telefon:" + telefon + " Stolik:" + stolik + " Dsta:" + wybranaData + " Godzina:" + wybranaGodzina + " Ilość osób:" + ilosc;
 
-                    daneosobowe.put("Imie", Imie);
-                    daneosobowe.put("Nazwisko", Nazwisko);
-                    daneosobowe.put("Email", podanyemail);
-                    daneosobowe.put("Telefon", Telefon);
-                    daneosobowe.put("Data", wybranadata2);
-                    daneosobowe.put("Godzina", wybranagodzina2);
-                    daneosobowe.put("Stolik", stolik1);
-                    daneosobowe.put("Ilosc", Ilosc);
-                    daneosobowe.put("Kod",Text);
+                    daneRezerwacyjne.put("Imie", imie);
+                    daneRezerwacyjne.put("Nazwisko", nazwisko);
+                    daneRezerwacyjne.put("Email", emailUzytkownika);
+                    daneRezerwacyjne.put("Telefon", telefon);
+                    daneRezerwacyjne.put("Data", wybranaData);
+                    daneRezerwacyjne.put("Godzina", wybranaGodzina);
+                    daneRezerwacyjne.put("Stolik", stolik);
+                    daneRezerwacyjne.put("Ilosc", ilosc);
+                    daneRezerwacyjne.put("Kod", daneRezerwacji);
 
-                    firebaseFirestore.collection("Stoliknr" + stolik).add(daneosobowe)
+
+                    firebaseFirestore.collection("Stoliknr" + stolik).add(daneRezerwacyjne)
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
@@ -141,15 +131,14 @@ public class DaneosoboweActivity extends AppCompatActivity {
                             Log.w(TAG, "Error writting document", e);
                         }
                     });
-
                     try {
-                        bitmap = textToImageEncode(Text);
-                        kodQR.setImageBitmap(bitmap);
+                        bitmap = textToImageEncode(daneRezerwacji);
+                        imageKodQR.setImageBitmap(bitmap);
                     } catch (WriterException e) {
                         e.printStackTrace();
                     }
 
-                    if (wyborgaleria.isChecked()) {
+                    if (checkZapiszwGalerii.isChecked()) {
                         MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "code_scanner", null);
                         Toast.makeText(DaneosoboweActivity.this, "Zapisane w galerii", Toast.LENGTH_SHORT).show();
                     }
@@ -187,10 +176,10 @@ public class DaneosoboweActivity extends AppCompatActivity {
     }
 
     public void uploadImage(){
-        StorageReference imageReference=storageReference.child("KodQR/"+Text+".jpg");
-        kodQR.setDrawingCacheEnabled(true);
-        kodQR.buildDrawingCache();
-        Bitmap bitmap1=((BitmapDrawable) kodQR.getDrawable()).getBitmap();
+        StorageReference imageReference=storageReference.child("KodQR/"+daneRezerwacji+".jpg");
+        imageKodQR.setDrawingCacheEnabled(true);
+        imageKodQR.buildDrawingCache();
+        Bitmap bitmap1=((BitmapDrawable) imageKodQR.getDrawable()).getBitmap();
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
         bitmap1.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
         byte[] data=byteArrayOutputStream.toByteArray();
@@ -205,9 +194,9 @@ public class DaneosoboweActivity extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Intent intent=new Intent(DaneosoboweActivity.this,MenuklientActivity.class);
+                Intent intent=new Intent(DaneosoboweActivity.this,MenuKlientActivity.class);
                 //startActivity(new Intent(DaneosoboweActivity.this, MenuklientActivity.class));
-                intent.putExtra("Email", Email);
+                intent.putExtra("Email", email);
                 startActivity(intent);
             }
         });

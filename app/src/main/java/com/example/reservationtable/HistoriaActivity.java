@@ -28,136 +28,37 @@ import java.util.List;
 public class HistoriaActivity extends AppCompatActivity {
 
     private static final String TAG="FireLog";
-    CalendarView kalendarz;
-    private RecyclerView kalendarzrecyclerview;
-    private HistoriaAdapter historiaAdapter;
-    private List<Rezerwacja> historiaList;
-    private FirebaseFirestore firebaseFirestore;
+    CalendarView calendarKalendarz;
+    RecyclerView recyclerviewKalendarz;
 
-    String Miesiac;
-    int size;
+    HistoriaAdapter historiaAdapter;
+    List<Rezerwacja> historiaList;
 
+    FirebaseFirestore firebaseFirestore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.historia);
 
-        kalendarz=findViewById(R.id.calendarView);
-        kalendarzrecyclerview=(RecyclerView) findViewById(R.id.historialist);
+        calendarKalendarz=findViewById(R.id.calendarView);
+        recyclerviewKalendarz=(RecyclerView) findViewById(R.id.historialist);
 
         historiaList=new ArrayList<>();
         historiaAdapter=new HistoriaAdapter(this,historiaList);
-        kalendarzrecyclerview.setHasFixedSize(true);
-        kalendarzrecyclerview.setLayoutManager(new LinearLayoutManager(this));
-        kalendarzrecyclerview.setAdapter(historiaAdapter);
+        recyclerviewKalendarz.setHasFixedSize(true);
+        recyclerviewKalendarz.setLayoutManager(new LinearLayoutManager(this));
+        recyclerviewKalendarz.setAdapter(historiaAdapter);
         firebaseFirestore=FirebaseFirestore.getInstance();
 
-        kalendarz.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        calendarKalendarz.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int rok, int miesiac, int dzien) {
+                String nazwaMesiaca=RezerwacjaUtils.getNazwaMiesiaca(miesiac);
                 historiaList.clear();
-                kalendarzrecyclerview.getAdapter().notifyDataSetChanged();
-                switch (miesiac){
-                    case 0: Miesiac="Styczeń";break;
-                    case 1: Miesiac="Luty";break;
-                    case 2: Miesiac="Marzec";break;
-                    case 3: Miesiac="Kwiecień";break;
-                    case 4: Miesiac="Maj";break;
-                    case 5: Miesiac="Czerwiec";break;
-                    case 6: Miesiac="Lipiec";break;
-                    case 7: Miesiac="Sierpień";break;
-                    case 8: Miesiac="Wrzesień";break;
-                    case 9: Miesiac="Październik";break;
-                    case 10: Miesiac="Listopad";break;
-                    case 11: Miesiac="Grudzień";break;
-                }
-                String data=dzien+" "+Miesiac+" "+rok;
+                recyclerviewKalendarz.getAdapter().notifyDataSetChanged();
+
+                String data=dzien+" "+nazwaMesiaca+" "+rok;
                 firebaseFirestore.collection("Stoliknr1").whereEqualTo("Data",data).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!=null){
-                            Log.d(TAG,"Error:"+e.getMessage());
-                        }else{
-                            for (DocumentChange documentChange:queryDocumentSnapshots.getDocumentChanges()){
-                                if(documentChange.getType()==DocumentChange.Type.ADDED){
-                                    Rezerwacja rezerwacja=documentChange.getDocument().toObject(Rezerwacja.class);
-                                    historiaList.add(rezerwacja);
-
-                                    historiaAdapter.notifyDataSetChanged();
-                                }
-                            }
-                        }
-                    }
-                });
-                firebaseFirestore.collection("Stoliknr2").whereEqualTo("Data",data).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!=null){
-                            Log.d(TAG,"Error:"+e.getMessage());
-                        }else{
-                            for (DocumentChange documentChange:queryDocumentSnapshots.getDocumentChanges()){
-                                if(documentChange.getType()==DocumentChange.Type.ADDED){
-                                    Rezerwacja rezerwacja=documentChange.getDocument().toObject(Rezerwacja.class);
-                                    historiaList.add(rezerwacja);
-
-                                    historiaAdapter.notifyDataSetChanged();
-                                }
-                            }
-                        }
-                    }
-                });
-                firebaseFirestore.collection("Stoliknr3").whereEqualTo("Data",data).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!=null){
-                            Log.d(TAG,"Error:"+e.getMessage());
-                        }else{
-                            for (DocumentChange documentChange:queryDocumentSnapshots.getDocumentChanges()){
-                                if(documentChange.getType()==DocumentChange.Type.ADDED){
-                                    Rezerwacja rezerwacja=documentChange.getDocument().toObject(Rezerwacja.class);
-                                    historiaList.add(rezerwacja);
-
-                                    historiaAdapter.notifyDataSetChanged();
-                                }
-                            }
-                        }
-                    }
-                });
-                firebaseFirestore.collection("Stoliknr4").whereEqualTo("Data",data).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!=null){
-                            Log.d(TAG,"Error:"+e.getMessage());
-                        }else{
-                            for (DocumentChange documentChange:queryDocumentSnapshots.getDocumentChanges()){
-                                if(documentChange.getType()==DocumentChange.Type.ADDED){
-                                    Rezerwacja rezerwacja=documentChange.getDocument().toObject(Rezerwacja.class);
-                                    historiaList.add(rezerwacja);
-
-                                    historiaAdapter.notifyDataSetChanged();
-                                }
-                            }
-                        }
-                    }
-                });
-                firebaseFirestore.collection("Stoliknr5").whereEqualTo("Data",data).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!=null){
-                            Log.d(TAG,"Error:"+e.getMessage());
-                        }else{
-                            for (DocumentChange documentChange:queryDocumentSnapshots.getDocumentChanges()){
-                                if(documentChange.getType()==DocumentChange.Type.ADDED){
-                                    Rezerwacja rezerwacja=documentChange.getDocument().toObject(Rezerwacja.class);
-                                    historiaList.add(rezerwacja);
-
-                                    historiaAdapter.notifyDataSetChanged();
-                                }
-                            }
-                        }
-                    }
-                });
-                firebaseFirestore.collection("Stoliknr6").whereEqualTo("Data",data).addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         if(e!=null){

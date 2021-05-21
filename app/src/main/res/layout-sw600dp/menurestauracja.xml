@@ -9,14 +9,14 @@
 
     <ImageView
         android:id="@+id/logoimageView"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_width="304dp"
+        android:layout_height="212dp"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="25dp"
         app:layout_constraintBottom_toTopOf="@+id/rezerwacjebutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

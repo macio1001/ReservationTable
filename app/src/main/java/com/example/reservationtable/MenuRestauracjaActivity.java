@@ -19,12 +19,9 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MenurestauracjaActivity extends AppCompatActivity {
+public class MenuRestauracjaActivity extends AppCompatActivity {
+    Button buttonRezerwacje,buttonSkaner,buttonSoliki,buttonWyszukiwanie;
 
-    ImageView logo;
-    Button rezerwacje,skaner,stoliki,wyszukiwanie;
-     public static final int CAMERA_PERMISSION_CODE=100;
-    FloatingActionButton wyloguj;
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -32,47 +29,45 @@ public class MenurestauracjaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menurestauracja);
 
-        logo=findViewById(R.id.logoimageView);
-        rezerwacje=findViewById(R.id.rezerwacjebutton);
-        skaner=findViewById(R.id.skanerbutton);
-        stoliki=findViewById(R.id.stolikibutton);
-        wyszukiwanie=findViewById(R.id.wyszukiwaniebutton);
+        buttonRezerwacje=findViewById(R.id.rezerwacjebutton);
+        buttonSkaner=findViewById(R.id.skanerbutton);
+        buttonSoliki=findViewById(R.id.stolikibutton);
+        buttonWyszukiwanie=findViewById(R.id.wyszukiwaniebutton);
 
-        wyloguj=findViewById(R.id.wylogujbtn);
         firebaseAuth = FirebaseAuth.getInstance();
 
-        rezerwacje.setOnClickListener(new View.OnClickListener() {
+        buttonRezerwacje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenurestauracjaActivity.this,HistoriaActivity.class));
+                startActivity(new Intent(MenuRestauracjaActivity.this,HistoriaActivity.class));
             }
         });
 
-        skaner.setOnClickListener(new View.OnClickListener() {
+        buttonSkaner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenurestauracjaActivity.this,SkanerActivity.class));
+                startActivity(new Intent(MenuRestauracjaActivity.this,SkanerActivity.class));
             }
         });
 
-        wyszukiwanie.setOnClickListener(new View.OnClickListener() {
+        buttonWyszukiwanie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenurestauracjaActivity.this,WyszukiwanierezerwacjiActivity.class));
+                startActivity(new Intent(MenuRestauracjaActivity.this,WyszukiwanierezerwacjiActivity.class));
             }
         });
 
-        stoliki.setOnClickListener(new View.OnClickListener() {
+        buttonSoliki.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenurestauracjaActivity.this,StolikiOff.class));
+                startActivity(new Intent(MenuRestauracjaActivity.this,StolikiOffActivity.class));
             }
         });
     }
 
     public void Wyloguj(View view){
         firebaseAuth.signOut();
-        Intent intent=new Intent(MenurestauracjaActivity.this,LoginActivity.class);
+        Intent intent=new Intent(MenuRestauracjaActivity.this,LogowanieActivity.class);
         intent.putExtra("finish",true);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
