@@ -1,10 +1,15 @@
-package com.example.reservationtable;
+package com.example.reservationtable.Adapter;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.reservationtable.Activity.RezerwacjaInfoActivity;
+import com.example.reservationtable.Activity.WyszukiwanierezerwacjiActivity;
+import com.example.reservationtable.R;
+import com.example.reservationtable.Rezerwacja;
 
 import java.util.List;
 
@@ -65,7 +70,7 @@ public class RezerwacjaAdapter extends RecyclerView.Adapter<RezerwacjaAdapter.Vi
         @Override
         public void onClick(View v){
             Rezerwacja rezerwacja=rezerwacjaList.get(getAdapterPosition());
-            Intent intent=new Intent(wyszukiwanierezerwacjiActivity,RezerwacjaInfo.class);
+            Intent intent=new Intent(wyszukiwanierezerwacjiActivity, RezerwacjaInfoActivity.class);
             intent.putExtra("rezerwacja",rezerwacja);
             wyszukiwanierezerwacjiActivity.startActivity(intent);
         }

@@ -1,20 +1,14 @@
-package com.example.reservationtable;
+package com.example.reservationtable.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.reservationtable.R;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.function.LongFunction;
 
 public class MenuKlientActivity extends AppCompatActivity {
     Button buttonHistoria,buttonRezerwuj;
@@ -36,7 +30,7 @@ public class MenuKlientActivity extends AppCompatActivity {
         buttonHistoria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MenuKlientActivity.this,HistoriaUzytkownikActivity.class);
+                Intent intent=new Intent(MenuKlientActivity.this, HistoriaUzytkownikActivity.class);
                 intent.putExtra("Email",email);
                 startActivity(intent);
             }
@@ -45,7 +39,7 @@ public class MenuKlientActivity extends AppCompatActivity {
         buttonRezerwuj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MenuKlientActivity.this,RezerwujActivity.class);
+                Intent intent=new Intent(MenuKlientActivity.this, RezerwujActivity.class);
                 intent.putExtra("Email",email);
                 startActivity(intent);
             }
@@ -54,7 +48,7 @@ public class MenuKlientActivity extends AppCompatActivity {
 
     public void Wyloguj(View view){
         firebaseAuth.signOut();
-        Intent intent=new Intent(MenuKlientActivity.this,LogowanieActivity.class);
+        Intent intent=new Intent(MenuKlientActivity.this, LogowanieActivity.class);
         intent.putExtra("finish",true);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

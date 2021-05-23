@@ -1,4 +1,4 @@
-package com.example.reservationtable;
+package com.example.reservationtable.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +13,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 
+import com.example.reservationtable.R;
+import com.example.reservationtable.Rezerwacja;
+import com.example.reservationtable.RezerwacjaUtils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,19 +32,19 @@ import java.util.Calendar;
 
 public class RezerwujActivity extends AppCompatActivity{
 
+    private static final String TAG="RezerwujActivity";
     TextView textWybierzDate,textIloscOsob,textWybranaData,textWybierzGodzine,textWybranaGodzina,textOstrzezenie;
     Button buttonDalej;
-    RadioGroup iloscosobGroup;
-    RadioButton osoba1,osoba2,osoba3,osoba4,osoba5,osoba6;
+    RadioGroup radiogroupIloscOsob;
     DatePickerDialog.OnDateSetListener onDateSetListener;
 
-    String Miesiac,Minuta;
-    String wybranadata,wybranagodzina,Wybrana;
-    int ilosc=0,minute,Minute;
-    FirebaseFirestore firebaseFirestore;
     Boolean zajety1=false,zajety2=false,zajety3=false,zajety4=false,zajety5=false,zajety6=false,WylaczStolik1=false,WylaczStolik2=false,WylaczStolik4=false,WylaczStolik5=false;
+    int ilosc=0;
 
-    private static final String TAG="RezerwujActivity";
+    String Miesiac,Minuta;
+    String wybranaData,wybranaGodzina,Wybrana;
+    int minute,Minute;
+    FirebaseFirestore firebaseFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,21 +57,13 @@ public class RezerwujActivity extends AppCompatActivity{
         textWybranaData=findViewById(R.id.wybranadataTextView);
         textWybierzGodzine=findViewById(R.id.wybierzgodzineTextView);
         textWybranaGodzina=findViewById(R.id.wybranagodzinatextView);
-        iloscosobGroup=findViewById(R.id.RadioGroup);
-        osoba1=findViewById(R.id.radioButton);
-        osoba2=findViewById(R.id.radioButton2);
-        osoba3=findViewById(R.id.radioButton3);
-        osoba4=findViewById(R.id.radioButton4);
-        osoba5=findViewById(R.id.radioButton5);
-        osoba6=findViewById(R.id.radioButton6);
+        radiogroupIloscOsob=findViewById(R.id.RadioGroup);
         buttonDalej=findViewById(R.id.dalejBtn);
 
         firebaseFirestore=FirebaseFirestore.getInstance();
 
         Intent intent=getIntent();
         String email=intent.getStringExtra("Email");
-
-        String iloscosob[]={"Wybierz ilosc osob","1","2","3","4","5","6"};
 
         textWybierzDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,9 +84,9 @@ public class RezerwujActivity extends AppCompatActivity{
         onDateSetListener=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int rok, int miesiac, int dzien) {
-                String nazwaMesiaca=RezerwacjaUtils.getNazwaMiesiaca(miesiac);
+                String nazwaMesiaca= RezerwacjaUtils.getNazwaMiesiaca(miesiac);
                 textWybranaData.setText(dzien+" "+nazwaMesiaca+" "+rok);
-                wybranadata=dzien+" "+nazwaMesiaca+" "+rok;
+                wybranaData=dzien+" "+nazwaMesiaca+" "+rok;
             }
         };
 
@@ -110,7 +104,7 @@ public class RezerwujActivity extends AppCompatActivity{
                 zajety5=false;
                 zajety6=false;
                 textOstrzezenie.setText("");
-                iloscosobGroup.clearCheck();
+                radiogroupIloscOsob.clearCheck();
                 TimePickerDialog timePickerDialog=new TimePickerDialog(RezerwujActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int godzina, int minuta) {
@@ -120,9 +114,9 @@ public class RezerwujActivity extends AppCompatActivity{
                         }else{
                             Minuta=String.valueOf(minuta);
                         }
-                        wybranagodzina=godzina+":"+Minuta;
+                        wybranaGodzina=godzina+":"+Minuta;
                         textWybranaGodzina.setText(godzina+":"+Minuta);
-                        Wybrana=wybranagodzina;
+                        Wybrana=wybranaGodzina;
                         Minute=Integer.valueOf(Minuta);
                         minute=Minute-15;
 
@@ -139,10 +133,10 @@ public class RezerwujActivity extends AppCompatActivity{
                             } else {
                                 Minuta = String.valueOf(minute);
                             }
-                            wybranagodzina = godzina + ":" + Minuta;
-                            Log.d(TAG, "Lala: " + wybranagodzina);
-                            wybranagodzina = godzina + ":" + minute;
-                            firebaseFirestore.collection("Stoliknr1").whereEqualTo("Data", wybranadata).whereEqualTo("Godzina", wybranagodzina).get()
+                            wybranaGodzina = godzina + ":" + Minuta;
+                            Log.d(TAG, "Lala: " + wybranaGodzina);
+                            wybranaGodzina = godzina + ":" + minute;
+                            firebaseFirestore.collection("Stoliknr1").whereEqualTo("Data", wybranaData).whereEqualTo("Godzina", wybranaGodzina).get()
                                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                         @Override
                                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -162,7 +156,7 @@ public class RezerwujActivity extends AppCompatActivity{
                                     Log.d(TAG, e.toString());
                                 }
                             });
-                            firebaseFirestore.collection("Stoliknr2").whereEqualTo("Data", wybranadata).whereEqualTo("Godzina", wybranagodzina).get()
+                            firebaseFirestore.collection("Stoliknr2").whereEqualTo("Data", wybranaData).whereEqualTo("Godzina", wybranaGodzina).get()
                                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                         @Override
                                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -182,7 +176,7 @@ public class RezerwujActivity extends AppCompatActivity{
                                     Log.d(TAG, e.toString());
                                 }
                             });
-                            firebaseFirestore.collection("Stoliknr3").whereEqualTo("Data", wybranadata).whereEqualTo("Godzina", wybranagodzina).get()
+                            firebaseFirestore.collection("Stoliknr3").whereEqualTo("Data", wybranaData).whereEqualTo("Godzina", wybranaGodzina).get()
                                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                         @Override
                                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -202,7 +196,7 @@ public class RezerwujActivity extends AppCompatActivity{
                                     Log.d(TAG, e.toString());
                                 }
                             });
-                            firebaseFirestore.collection("Stoliknr4").whereEqualTo("Data", wybranadata).whereEqualTo("Godzina", wybranagodzina).get()
+                            firebaseFirestore.collection("Stoliknr4").whereEqualTo("Data", wybranaData).whereEqualTo("Godzina", wybranaGodzina).get()
                                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                         @Override
                                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -222,7 +216,7 @@ public class RezerwujActivity extends AppCompatActivity{
                                     Log.d(TAG, e.toString());
                                 }
                             });
-                            firebaseFirestore.collection("Stoliknr5").whereEqualTo("Data", wybranadata).whereEqualTo("Godzina", wybranagodzina).get()
+                            firebaseFirestore.collection("Stoliknr5").whereEqualTo("Data", wybranaData).whereEqualTo("Godzina", wybranaGodzina).get()
                                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                         @Override
                                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -242,7 +236,7 @@ public class RezerwujActivity extends AppCompatActivity{
                                     Log.d(TAG, e.toString());
                                 }
                             });
-                            firebaseFirestore.collection("Stoliknr6").whereEqualTo("Data", wybranadata).whereEqualTo("Godzina", wybranagodzina).get()
+                            firebaseFirestore.collection("Stoliknr6").whereEqualTo("Data", wybranaData).whereEqualTo("Godzina", wybranaGodzina).get()
                                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                         @Override
                                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -271,7 +265,7 @@ public class RezerwujActivity extends AppCompatActivity{
             }
         });
 
-        iloscosobGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        radiogroupIloscOsob.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 switch (checkedId){
@@ -330,7 +324,7 @@ public class RezerwujActivity extends AppCompatActivity{
                     case R.id.radioButton5:
                         ilosc=5;
                         if(zajety5==true){
-                            textOstrzezenie.setText("W tym terminie stoliki dla 6 osób są zajęte!Proszę wybrać inną godzinę!");
+                            textOstrzezenie.setText("W tym terminie stoliki dla 5 osób są zajęte!Proszę wybrać inną godzinę!");
                             buttonDalej.setClickable(false);
                         }
                         break;
@@ -347,18 +341,18 @@ public class RezerwujActivity extends AppCompatActivity{
             buttonDalej.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if ((wybranadata == null) && (wybranagodzina == null) && (ilosc == 0)) {
+                    if ((wybranaData == null) && (wybranaGodzina == null) && (ilosc == 0)) {
                         Toast.makeText(RezerwujActivity.this, "Nie dokonałes wyboru obowiązkowych opcji!", Toast.LENGTH_SHORT).show();
-                    } else if (wybranagodzina == null) {
+                    } else if (wybranaGodzina == null) {
                         Toast.makeText(RezerwujActivity.this, "Nie dokonałes wyboru godziny!", Toast.LENGTH_SHORT).show();
-                    } else if (wybranadata == null) {
+                    } else if (wybranaData == null) {
                         Toast.makeText(RezerwujActivity.this, "Nie dokonałes wyboru daty!", Toast.LENGTH_SHORT).show();
                     } else if (ilosc == 0) {
                         Toast.makeText(RezerwujActivity.this, "Nie dokonałes wyboru ilosci osob!!", Toast.LENGTH_SHORT).show();
                     } else {
                         Intent intent = new Intent(RezerwujActivity.this, StolikiActivity.class);
-                        intent.putExtra("Data", wybranadata);
-                        intent.putExtra("Godzina", wybranagodzina);
+                        intent.putExtra("Data", wybranaData);
+                        intent.putExtra("Godzina", wybranaGodzina);
                         intent.putExtra("Email", email);
                         intent.putExtra("Osob", ilosc);
                         intent.putExtra("WylaczStolik1",WylaczStolik1);

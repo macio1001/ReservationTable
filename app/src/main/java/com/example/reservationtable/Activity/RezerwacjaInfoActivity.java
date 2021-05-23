@@ -1,4 +1,4 @@
-package com.example.reservationtable;
+package com.example.reservationtable.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,13 +9,15 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.reservationtable.R;
+import com.example.reservationtable.Rezerwacja;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class RezerwacjaInfo extends AppCompatActivity {
+public class RezerwacjaInfoActivity extends AppCompatActivity {
 
     ImageView imageLogoInfo;
     TextView textImieInfo,textNazwiskoInfo,textEmailInfo,textGodzinaInfo,textDataInfo,textTelefonInfo,textSstolikInfo,textIloscInfo;

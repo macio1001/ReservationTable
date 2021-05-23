@@ -1,4 +1,4 @@
-package com.example.reservationtable;
+package com.example.reservationtable.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,9 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.example.reservationtable.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -266,7 +265,7 @@ public class StolikiOffActivity extends AppCompatActivity {
         buttonAkceptuj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StolikiOffActivity.this,MenuRestauracjaActivity.class));
+                startActivity(new Intent(StolikiOffActivity.this, MenuRestauracjaActivity.class));
             }
         });
     }

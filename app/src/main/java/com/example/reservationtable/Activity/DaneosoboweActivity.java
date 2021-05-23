@@ -1,4 +1,4 @@
-package com.example.reservationtable;
+package com.example.reservationtable.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.reservationtable.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -194,7 +195,7 @@ public class DaneosoboweActivity extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Intent intent=new Intent(DaneosoboweActivity.this,MenuKlientActivity.class);
+                Intent intent=new Intent(DaneosoboweActivity.this, MenuKlientActivity.class);
                 //startActivity(new Intent(DaneosoboweActivity.this, MenuklientActivity.class));
                 intent.putExtra("Email", email);
                 startActivity(intent);

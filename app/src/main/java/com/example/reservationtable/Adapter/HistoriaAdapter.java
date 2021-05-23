@@ -1,4 +1,4 @@
-package com.example.reservationtable;
+package com.example.reservationtable.Adapter;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -6,39 +6,44 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.reservationtable.Activity.HistoriaActivity;
+import com.example.reservationtable.Activity.RezerwacjaInfoActivity;
+import com.example.reservationtable.R;
+import com.example.reservationtable.Rezerwacja;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class HistoriaUzytkownikAdapter extends RecyclerView.Adapter<HistoriaUzytkownikAdapter.ViewHolder> {
+public class HistoriaAdapter extends RecyclerView.Adapter<HistoriaAdapter.ViewHolder> {
 
-    public List<Rezerwacja> historiaUzytkownikList;
-    public HistoriaUzytkownikActivity historiaUzytkownikActivity;
+    public List<Rezerwacja> historiaList;
+    public HistoriaActivity historiaActivity;
 
-    public HistoriaUzytkownikAdapter(HistoriaUzytkownikActivity historiaUzytkownikActivity,List<Rezerwacja> historiaUserList){
-        this.historiaUzytkownikActivity=historiaUzytkownikActivity;
-        this.historiaUzytkownikList=historiaUserList;
+    public HistoriaAdapter(HistoriaActivity historiaActivity,List<Rezerwacja> historiaList){
+        this.historiaList=historiaList;
+        this.historiaActivity=historiaActivity;
     }
 
     @NonNull
     @Override
-    public HistoriaUzytkownikAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public HistoriaAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_item,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HistoriaUzytkownikAdapter.ViewHolder holder, int position) {
-        holder.imieText.setText(historiaUzytkownikList.get(position).getImie());
-        holder.nazwiskotext.setText(historiaUzytkownikList.get(position).getNazwisko());
-        holder.stolikText.setText(historiaUzytkownikList.get(position).getStolik());
-        holder.godzinaText.setText(historiaUzytkownikList.get(position).getGodzina());
+    public void onBindViewHolder(@NonNull HistoriaAdapter.ViewHolder holder, int position) {
+        holder.imieText.setText(historiaList.get(position).getImie());
+        holder.nazwiskotext.setText(historiaList.get(position).getNazwisko());
+        holder.stolikText.setText(historiaList.get(position).getStolik());
+        holder.godzinaText.setText(historiaList.get(position).getGodzina());
     }
 
     @Override
     public int getItemCount() {
-        return historiaUzytkownikList.size();
+        return historiaList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -61,13 +66,12 @@ public class HistoriaUzytkownikAdapter extends RecyclerView.Adapter<HistoriaUzyt
 
             itemView.setOnClickListener(this);
         }
-
         @Override
         public void onClick(View view) {
-            Rezerwacja rezerwacja=historiaUzytkownikList.get(getAdapterPosition());
-            Intent intent=new Intent(historiaUzytkownikActivity, RezerwacjaInfo.class);
+            Rezerwacja rezerwacja=historiaList.get(getAdapterPosition());
+            Intent intent=new Intent(historiaActivity, RezerwacjaInfoActivity.class);
             intent.putExtra("rezerwacja",rezerwacja);
-            historiaUzytkownikActivity.startActivity(intent);
+            historiaActivity.startActivity(intent);
         }
     }
 }

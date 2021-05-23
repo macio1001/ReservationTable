@@ -1,4 +1,4 @@
-package com.example.reservationtable;
+package com.example.reservationtable.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,21 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.text.method.SingleLineTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.flags.Singletons;
+import com.example.reservationtable.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LogowanieActivity extends AppCompatActivity {
 
@@ -99,14 +96,14 @@ public class LogowanieActivity extends AppCompatActivity {
         textPrzypomnij.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LogowanieActivity.this,PrzypomnienieHaslaActivity.class));
+                startActivity(new Intent(LogowanieActivity.this, PrzypomnienieHaslaActivity.class));
             }
         });
 
         textRejestruj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LogowanieActivity.this,RejestacjaActivity.class));
+                startActivity(new Intent(LogowanieActivity.this, RejestacjaActivity.class));
             }
         });
     }

@@ -11,21 +11,21 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RezerwacjaInfo" />
-        <activity android:name=".StolikiOffActivity" />
-        <activity android:name=".StolikiActivity" />
-        <activity android:name=".HistoriaActivity" />
-        <activity android:name=".SkanerActivity" />
-        <activity android:name=".DaneosoboweActivity" />
-        <activity android:name=".RezerwujActivity" />
-        <activity android:name=".MenuKlientActivity" />
-        <activity android:name=".HistoriaUzytkownikActivity"/>
-        <activity android:name=".WyszukiwanierezerwacjiActivity"
+        <activity android:name=".Activity.RezerwacjaInfoActivity" />
+        <activity android:name=".Activity.StolikiOffActivity" />
+        <activity android:name=".Activity.StolikiActivity" />
+        <activity android:name=".Activity.HistoriaActivity" />
+        <activity android:name=".Activity.SkanerActivity" />
+        <activity android:name=".Activity.DaneosoboweActivity" />
+        <activity android:name=".Activity.RezerwujActivity" />
+        <activity android:name=".Activity.MenuKlientActivity" />
+        <activity android:name=".Activity.HistoriaUzytkownikActivity"/>
+        <activity android:name=".Activity.WyszukiwanierezerwacjiActivity"
             android:windowSoftInputMode="adjustPan|adjustResize"/>
-        <activity android:name=".MenuRestauracjaActivity" />
-        <activity android:name=".PrzypomnienieHaslaActivity" />
-        <activity android:name=".RejestacjaActivity" />
-        <activity android:name=".LogowanieActivity">
+        <activity android:name=".Activity.MenuRestauracjaActivity" />
+        <activity android:name=".Activity.PrzypomnienieHaslaActivity" />
+        <activity android:name=".Activity.RejestacjaActivity" />
+        <activity android:name=".Activity.LogowanieActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

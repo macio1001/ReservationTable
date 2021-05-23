@@ -1,4 +1,4 @@
-package com.example.reservationtable;
+package com.example.reservationtable.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,18 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.CalendarView;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.google.android.gms.vision.text.Line;
+import com.example.reservationtable.Adapter.HistoriaAdapter;
+import com.example.reservationtable.R;
+import com.example.reservationtable.Rezerwacja;
+import com.example.reservationtable.RezerwacjaUtils;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +51,7 @@ public class HistoriaActivity extends AppCompatActivity {
         calendarKalendarz.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int rok, int miesiac, int dzien) {
-                String nazwaMesiaca=RezerwacjaUtils.getNazwaMiesiaca(miesiac);
+                String nazwaMesiaca= RezerwacjaUtils.getNazwaMiesiaca(miesiac);
                 historiaList.clear();
                 recyclerviewKalendarz.getAdapter().notifyDataSetChanged();
 
