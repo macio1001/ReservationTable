@@ -38,12 +38,10 @@ public class RezerwujActivity extends AppCompatActivity{
     RadioGroup radiogroupIloscOsob;
     DatePickerDialog.OnDateSetListener onDateSetListener;
 
-    Boolean zajety1=false,zajety2=false,zajety3=false,zajety4=false,zajety5=false,zajety6=false,WylaczStolik1=false,WylaczStolik2=false,WylaczStolik4=false,WylaczStolik5=false;
-    int ilosc=0;
+    Boolean zajety1=false,zajety2=false,zajety3=false,zajety4=false,zajety5=false,zajety6=false,wylaczStolikPierwszy=false,wylaczStolikDrugi=false,wylaczStolikCzwarty=false,wylaczStolikPiaty=false;
 
-    String Miesiac,Minuta;
-    String wybranaData,wybranaGodzina,Wybrana;
-    int minute,Minute;
+    String wybranaData,wybranaGodzina,Wybrana,Minuta;
+    int minute,Minute,ilosc=0;
     FirebaseFirestore firebaseFirestore;
 
     @Override
@@ -272,13 +270,9 @@ public class RezerwujActivity extends AppCompatActivity{
                     case R.id.radioButton:
                         ilosc=1;
                         if(zajety1==true && zajety2==false){
-                            Log.d(TAG,"Lalala: Gotowosc jest:"+zajety1);
-                            WylaczStolik1=true;
-                            Log.d(TAG,"Lalala: Gotowosc jest:"+WylaczStolik1);
+                            wylaczStolikPierwszy=true;
                         }else if(zajety1==false && zajety2==true){
-                            Log.d(TAG,"Lalala: Gotowosc jest:"+zajety2);
-                            WylaczStolik2=true;
-                            Log.d(TAG,"Lalala: Gotowosc jest:"+WylaczStolik2);
+                            wylaczStolikDrugi=true;
                         }else if(zajety1==true && zajety2==true){
                             textOstrzezenie.setText("W tym terminie stoliki są zajęte");
                             buttonDalej.setClickable(false);
@@ -287,13 +281,9 @@ public class RezerwujActivity extends AppCompatActivity{
                     case R.id.radioButton2:
                         ilosc=2;
                         if(zajety1==true && zajety2==false){
-                            Log.d(TAG,"Lalala: Gotowosc jest:"+zajety1);
-                            WylaczStolik1=true;
-                            Log.d(TAG,"Lalala: Gotowosc jest:"+WylaczStolik1);
+                           wylaczStolikPierwszy=true;
                         }else if(zajety1==false && zajety2==true){
-                            Log.d(TAG,"Lalala: Gotowosc jest:"+zajety2);
-                            WylaczStolik2=true;
-                            Log.d(TAG,"Lalala: Gotowosc jest:"+WylaczStolik2);
+                            wylaczStolikDrugi=true;
                         }else if(zajety1==true && zajety2==true){
                             textOstrzezenie.setText("O tej godzinie stoliki dla 2 osób są zajęte!Proszę wybrać inną godzinę!");
                             buttonDalej.setClickable(false);
@@ -309,13 +299,9 @@ public class RezerwujActivity extends AppCompatActivity{
                     case R.id.radioButton4:
                         ilosc=4;
                         if(zajety4==true && zajety5==false){
-                            Log.d(TAG,"Lalala: Gotowosc jest:"+zajety4);
-                            WylaczStolik4=true;
-                            Log.d(TAG,"Lalala: Gotowosc jest:"+WylaczStolik4);
+                            wylaczStolikCzwarty=true;
                         }else if(zajety4==false && zajety5==true){
-                            Log.d(TAG,"Lalala: Gotowosc jest:"+zajety5);
-                            WylaczStolik5=true;
-                            Log.d(TAG,"Lalala: Gotowosc jest:"+WylaczStolik5);
+                            wylaczStolikPiaty=true;
                         }else if(zajety4==true && zajety5==true){
                             textOstrzezenie.setText("W tym terminie stoliki dla 4 osób są zajęte! Proszę wybrać inną godzinę!");
                             buttonDalej.setClickable(false);
@@ -355,10 +341,10 @@ public class RezerwujActivity extends AppCompatActivity{
                         intent.putExtra("Godzina", wybranaGodzina);
                         intent.putExtra("Email", email);
                         intent.putExtra("Osob", ilosc);
-                        intent.putExtra("WylaczStolik1",WylaczStolik1);
-                        intent.putExtra("WylaczStolik2",WylaczStolik2);
-                        intent.putExtra("WylaczStolik4",WylaczStolik4);
-                        intent.putExtra("WylaczStolik5",WylaczStolik5);
+                        intent.putExtra("WylaczStolik1",wylaczStolikPierwszy);
+                        intent.putExtra("WylaczStolik2",wylaczStolikDrugi);
+                        intent.putExtra("WylaczStolik4",wylaczStolikCzwarty);
+                        intent.putExtra("WylaczStolik5",wylaczStolikPiaty);
                         startActivity(intent);
                     }
                 }
