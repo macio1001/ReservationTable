@@ -133,7 +133,7 @@ public class DaneosoboweActivity extends AppCompatActivity {
                         }
                     });
                     try {
-                        bitmap = textToImageEncode(daneRezerwacji);
+                        bitmap = tekstDoKodowaniaObrazka(daneRezerwacji);
                         imageKodQR.setImageBitmap(bitmap);
                     } catch (WriterException e) {
                         e.printStackTrace();
@@ -144,18 +144,18 @@ public class DaneosoboweActivity extends AppCompatActivity {
                         Toast.makeText(DaneosoboweActivity.this, "Zapisane w galerii", Toast.LENGTH_SHORT).show();
                     }
 
-                    uploadImage();
+                    zaladujObrazek();
                     //startActivity(new Intent(DaneosoboweActivity.this, MenuklientActivity.class));
                 }
             });
         }
 
-    private Bitmap textToImageEncode(String value) throws WriterException {
+    private Bitmap tekstDoKodowaniaObrazka(String wartosc) throws WriterException {
         BitMatrix bitMatrix;
         Hashtable hints=new Hashtable();
         hints.put(EncodeHintType.CHARACTER_SET,"UTF-8");
         try {
-            bitMatrix=new MultiFormatWriter().encode(value, BarcodeFormat.DATA_MATRIX.QR_CODE, QRCodeWidth,QRCodeWidth,hints);
+            bitMatrix=new MultiFormatWriter().encode(wartosc, BarcodeFormat.DATA_MATRIX.QR_CODE, QRCodeWidth,QRCodeWidth,hints);
         }catch (IllegalArgumentException e){
             return null;
         }
@@ -176,13 +176,13 @@ public class DaneosoboweActivity extends AppCompatActivity {
         return bitmap;
     }
 
-    public void uploadImage(){
+    public void zaladujObrazek(){
         StorageReference imageReference=storageReference.child("KodQR/"+daneRezerwacji+".jpg");
         imageKodQR.setDrawingCacheEnabled(true);
         imageKodQR.buildDrawingCache();
-        Bitmap bitmap1=((BitmapDrawable) imageKodQR.getDrawable()).getBitmap();
+        Bitmap bitmap=((BitmapDrawable) imageKodQR.getDrawable()).getBitmap();
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-        bitmap1.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
         byte[] data=byteArrayOutputStream.toByteArray();
 
         UploadTask uploadTask=imageReference.putBytes(data);
@@ -190,7 +190,7 @@ public class DaneosoboweActivity extends AppCompatActivity {
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d(TAG,"Error uploading image");
+                Log.d(TAG,"Błąd poczas przesyłania obrazu");
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
