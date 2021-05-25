@@ -56,23 +56,25 @@ public class HistoriaActivity extends AppCompatActivity {
                 recyclerviewKalendarz.getAdapter().notifyDataSetChanged();
 
                 String data=dzien+" "+nazwaMesiaca+" "+rok;
-                firebaseFirestore.collection("Stoliknr1").whereEqualTo("Data",data).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!=null){
-                            Log.d(TAG,"Error:"+e.getMessage());
-                        }else{
-                            for (DocumentChange documentChange:queryDocumentSnapshots.getDocumentChanges()){
-                                if(documentChange.getType()==DocumentChange.Type.ADDED){
-                                    Rezerwacja rezerwacja=documentChange.getDocument().toObject(Rezerwacja.class);
-                                    historiaList.add(rezerwacja);
+                for(int i=0;i<=6;i++) {
+                    firebaseFirestore.collection("Stoliknr" + i).whereEqualTo("Data", data).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                        @Override
+                        public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                            if (e != null) {
+                                Log.d(TAG, "Error:" + e.getMessage());
+                            } else {
+                                for (DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()) {
+                                    if (documentChange.getType() == DocumentChange.Type.ADDED) {
+                                        Rezerwacja rezerwacja = documentChange.getDocument().toObject(Rezerwacja.class);
+                                        historiaList.add(rezerwacja);
 
-                                    historiaAdapter.notifyDataSetChanged();
+                                        historiaAdapter.notifyDataSetChanged();
+                                    }
                                 }
                             }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
     }

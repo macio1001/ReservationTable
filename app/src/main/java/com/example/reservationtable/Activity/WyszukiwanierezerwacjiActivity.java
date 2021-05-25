@@ -58,7 +58,7 @@ public class WyszukiwanierezerwacjiActivity extends AppCompatActivity {
                 String wyszukanie=editKod.getText().toString();
 
                 for(int i=0;i<=6;i++) {
-                    firebaseFirestore.collection("Stoliknr1").whereEqualTo("Nazwisko", wyszukanie).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    firebaseFirestore.collection("Stoliknr"+i).whereEqualTo("Nazwisko", wyszukanie).addSnapshotListener(new EventListener<QuerySnapshot>() {
                         @Override
                         public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                             if (e != null) {

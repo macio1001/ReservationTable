@@ -62,7 +62,7 @@ public class HistoriaUzytkownikActivity extends AppCompatActivity {
 
                 String data=dzien+" "+nazwaMesiaca+" "+rok;
                 for(int i=0;i<=6;i++) {
-                    firebaseFirestore.collection("Stoliknr1").whereEqualTo("Data", data).whereEqualTo("Email", email).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    firebaseFirestore.collection("Stoliknri"+i).whereEqualTo("Data", data).whereEqualTo("Email", email).addSnapshotListener(new EventListener<QuerySnapshot>() {
                         @Override
                         public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                             if (e != null) {
