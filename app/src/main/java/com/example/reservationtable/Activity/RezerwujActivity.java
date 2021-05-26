@@ -40,8 +40,8 @@ public class RezerwujActivity extends AppCompatActivity{
 
     Boolean zajety1=false,zajety2=false,zajety3=false,zajety4=false,zajety5=false,zajety6=false,wylaczStolikPierwszy=false,wylaczStolikDrugi=false,wylaczStolikCzwarty=false,wylaczStolikPiaty=false;
 
-    String wybranaData,wybranaGodzina,Wybrana,Minuta;
-    int minute,Minute,ilosc=0;
+    String wybranaData,wybranaGodzina,wybrana,minutaString;
+    int minutaInt1,minutaInt,ilosc=0;
     FirebaseFirestore firebaseFirestore;
 
     @Override
@@ -108,32 +108,32 @@ public class RezerwujActivity extends AppCompatActivity{
                     public void onTimeSet(TimePicker timePicker, int godzina, int minuta) {
                         buttonDalej.setClickable(true);
                         if (minuta>=0 && minuta<10){
-                            Minuta="0"+minuta;
+                            minutaString="0"+minuta;
                         }else{
-                            Minuta=String.valueOf(minuta);
+                            minutaString=String.valueOf(minuta);
                         }
-                        wybranaGodzina=godzina+":"+Minuta;
-                        textWybranaGodzina.setText(godzina+":"+Minuta);
-                        Wybrana=wybranaGodzina;
-                        Minute=Integer.valueOf(Minuta);
-                        minute=Minute-15;
+                        wybranaGodzina=godzina+":"+minutaString;
+                        textWybranaGodzina.setText(godzina+":"+minutaString);
+                        wybrana=wybranaGodzina;
+                        minutaInt=Integer.valueOf(minutaString);
+                        minutaInt1=minutaInt-15;
 
                         for (int i=0;i<30;i++) {
-                            if (minute > 59) {
+                            if (minutaInt1 > 59) {
                                 godzina += 1;
-                                minute = 0;
-                            } else if (minute < 0) {
+                                minutaInt1 = 0;
+                            } else if (minutaInt1 < 0) {
                                 godzina-=1;
-                                minute+=60;
+                                minutaInt1+=60;
                             }
-                            if (minute >= 0 && minute < 10) {
-                                Minuta = "0" + minute;
+                            if (minutaInt1 >= 0 && minutaInt1 < 10) {
+                                minutaString = "0" + minutaInt1;
                             } else {
-                                Minuta = String.valueOf(minute);
+                                minutaString = String.valueOf(minutaInt1);
                             }
-                            wybranaGodzina = godzina + ":" + Minuta;
+                            wybranaGodzina = godzina + ":" + minutaString;
                             Log.d(TAG, "Lala: " + wybranaGodzina);
-                            wybranaGodzina = godzina + ":" + minute;
+                            wybranaGodzina = godzina + ":" + minutaInt1;
                             firebaseFirestore.collection("Stoliknr1").whereEqualTo("Data", wybranaData).whereEqualTo("Godzina", wybranaGodzina).get()
                                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                         @Override
@@ -254,7 +254,7 @@ public class RezerwujActivity extends AppCompatActivity{
                                     Log.d(TAG, e.toString());
                                 }
                             });
-                            minute += 1;
+                            minutaInt1 += 1;
                         }
                     }
                 },godzina,minuta,true);
