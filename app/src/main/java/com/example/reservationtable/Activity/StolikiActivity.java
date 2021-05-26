@@ -129,10 +129,8 @@ public class StolikiActivity extends AppCompatActivity {
                                 String documentId=rezerwacja.getDocumentId();
 
                                 if(documentId!=null){
-                                    if(documentId!=null){
-                                        imageStolikTrzeci.setBackgroundColor(Color.RED);
-                                        imageStolikTrzeci.setClickable(false);
-                                    }
+                                    imageStolikTrzeci.setBackgroundColor(Color.RED);
+                                    imageStolikTrzeci.setClickable(false);
                                 }
                             }
                         }
@@ -157,12 +155,10 @@ public class StolikiActivity extends AppCompatActivity {
                                 rezerwacja.setDocumentId(documentSnapshot.getId());
                                 String documentId=rezerwacja.getDocumentId();
 
-                                if(documentId!=null){
                                     if(documentId!=null){
                                         imageStolikCzwarty.setBackgroundColor(Color.RED);
                                         imageStolikCzwarty.setClickable(false);
                                     }
-                                }
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -180,12 +176,10 @@ public class StolikiActivity extends AppCompatActivity {
                                 rezerwacja.setDocumentId(documentSnapshot.getId());
                                 String documentId=rezerwacja.getDocumentId();
 
-                                if(documentId!=null){
                                     if(documentId!=null){
                                         imageStolikPiaty.setBackgroundColor(Color.RED);
                                         imageStolikPiaty.setClickable(false);
                                     }
-                                }
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -207,12 +201,10 @@ public class StolikiActivity extends AppCompatActivity {
                                 rezerwacja.setDocumentId(documentSnapshot.getId());
                                 String documentId=rezerwacja.getDocumentId();
 
-                                if(documentId!=null){
                                     if(documentId!=null){
                                         imageStolikSzosty.setBackgroundColor(Color.RED);
                                         imageStolikSzosty.setClickable(false);
                                     }
-                                }
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
