@@ -26,6 +26,7 @@ public class Rezerwacja implements Serializable {
         this.Ilosc=Ilosc;
         this.Data=Data;
         this.Telefon=Telefon;
+        this.Email=Email;
     }
 
     public String getDocumentId(){

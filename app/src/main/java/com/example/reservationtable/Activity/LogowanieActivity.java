@@ -76,7 +76,7 @@ public class LogowanieActivity extends AppCompatActivity {
                                                 intent.putExtra("Email",email);
                                                 startActivity(intent);
                                             }
-                                            if(haslo.equals("reservationtable1@gmail.com")){
+                                            if(email.equals("reservationtable1@gmail.com")){
                                                 startActivity(new Intent(LogowanieActivity.this, MenuRestauracjaActivity.class));
                                             }
                                         } else {

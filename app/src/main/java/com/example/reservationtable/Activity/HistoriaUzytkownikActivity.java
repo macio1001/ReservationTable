@@ -53,6 +53,7 @@ public class HistoriaUzytkownikActivity extends AppCompatActivity {
         String email=intent.getStringExtra("Email");
 
 
+
         calendarKalendarzUzytkownik.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int rok, int miesiac, int dzien) {
@@ -62,7 +63,7 @@ public class HistoriaUzytkownikActivity extends AppCompatActivity {
 
                 String data=dzien+" "+nazwaMesiaca+" "+rok;
                 for(int i=0;i<=6;i++) {
-                    firebaseFirestore.collection("Stoliknri"+i).whereEqualTo("Data", data).whereEqualTo("Email", email).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    firebaseFirestore.collection("Stoliknr"+ i).whereEqualTo("Data", data).whereEqualTo("Email", email).addSnapshotListener(new EventListener<QuerySnapshot>() {
                         @Override
                         public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                             if (e != null) {
