@@ -4,28 +4,28 @@ import java.io.Serializable;
 
 public class Rezerwacja implements Serializable {
     public String documentId;
-    private String imie;
-    private String nazwisko;
-    private String stolik;
-    private String godzina;
-    private String data;
-    private String email;
-    private String telefon;
-    private String ilosc;
-    private String kod;
+    private String Imie;
+    private String Nazwisko;
+    private String Stolik;
+    private String Godzina;
+    private String Data;
+    private String Email;
+    private String Telefon;
+    private String Ilosc;
+    private String Kod;
 
     public Rezerwacja(){
 
     }
 
-    public Rezerwacja(String imie, String nazwisko, String stolik, String godzina, String ilosc,String telefon,String email,String data){
-        this.imie=imie;
-        this.nazwisko=nazwisko;
-        this.stolik=stolik;
-        this.godzina=godzina;
-        this.ilosc=ilosc;
-        this.telefon=telefon;
-        this.data=data;
+    public Rezerwacja(String Imie, String Nazwisko, String Stolik, String Godzina, String Ilosc,String Telefon,String Email,String Data){
+        this.Imie=Imie;
+        this.Nazwisko=Nazwisko;
+        this.Stolik=Stolik;
+        this.Godzina=Godzina;
+        this.Ilosc=Ilosc;
+        this.Data=Data;
+        this.Telefon=Telefon;
     }
 
     public String getDocumentId(){
@@ -37,74 +37,74 @@ public class Rezerwacja implements Serializable {
     }
 
     public String getImie(){
-        return imie;
+        return Imie;
     }
 
-    public void setImie(String imie){
-        this.imie=imie;
+    public void setImie(String Imie){
+        this.Imie=Imie;
     }
 
     public String getNazwisko(){
-        return nazwisko;
+        return Nazwisko;
     }
 
-    public void setNazwisko(String nazwisko){
-        this.nazwisko=nazwisko;
+    public void setNazwisko(String Nazwisko){
+        this.Nazwisko=Nazwisko;
     }
 
     public String getStolik(){
-        return stolik;
+        return Stolik;
     }
 
-    public void setStolik(String stolik){
-        this.stolik=stolik;
+    public void setStolik(String Stolik){
+        this.Stolik=Stolik;
     }
 
     public String getGodzina(){
-        return godzina;
+        return Godzina;
     }
 
-    public void setGodzina(String godzina){
-        this.godzina=godzina;
+    public void setGodzina(String Godzina){
+        this.Godzina=Godzina;
     }
 
-    public void setIlosc(String ilosc) {
-        ilosc = ilosc;
+    public void setIlosc(String Ilosc) {
+        this.Ilosc = Ilosc;
     }
 
     public String getIlosc() {
-        return ilosc;
+        return Ilosc;
     }
 
-    public void setTelefon(String telefon) {
-        telefon = telefon;
+    public void setTelefon(String Telefon) {
+        this.Telefon = Telefon;
     }
 
     public String getTelefon() {
-        return telefon;
+        return Telefon;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
-    public void setEmail(String email) {
-        email = email;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 
-    public void setData(String data) {
-        data = data;
+    public void setData(String Data) {
+        this.Data = Data;
     }
 
     public String getData() {
-        return data;
+        return Data;
     }
 
     public String getKod() {
-        return kod;
+        return Kod;
     }
 
-    public void setKod(String kod) {
-        kod = kod;
+    public void setKod(String Kod) {
+        this.Kod = Kod;
     }
 }
