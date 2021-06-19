@@ -56,7 +56,7 @@ public class MenuRestauracjaActivity extends AppCompatActivity {
         });
     }
 
-    public void Wyloguj(View view){
+    public void wyloguj(View view){
         firebaseAuth.signOut();
         Intent intent=new Intent(MenuRestauracjaActivity.this, LogowanieActivity.class);
         intent.putExtra("finish",true);

@@ -46,7 +46,7 @@ public class MenuKlientActivity extends AppCompatActivity {
         });
     }
 
-    public void Wyloguj(View view){
+    public void wyloguj(View view){
         firebaseAuth.signOut();
         Intent intent=new Intent(MenuKlientActivity.this, LogowanieActivity.class);
         intent.putExtra("finish",true);
