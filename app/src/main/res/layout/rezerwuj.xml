@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
         android:layout_marginLeft="130dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="130dp"
         android:layout_marginRight="130dp"
         android:text="Wybierz datę"
@@ -125,13 +125,13 @@
         app:layout_constraintBottom_toTopOf="@+id/dalejBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <RadioGroup
         android:id="@+id/RadioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="87dp"
+        android:layout_height="208dp"
         android:layout_marginStart="175dp"
         android:layout_marginLeft="175dp"
         android:layout_marginEnd="175dp"
@@ -145,44 +145,43 @@
             android:id="@+id/radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/_1_osoba"
-            android:checked="false"/>
+            android:checked="false"
+            android:text="@string/_1_osoba" />
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_2_osoby"
-            android:checked="false"/>
+            android:checked="false"
+            android:text="@string/_2_osoby" />
 
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_3_osoby"
-            android:checked="false"/>
+            android:checked="false"
+            android:text="@string/_3_osoby" />
 
         <RadioButton
             android:id="@+id/radioButton4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_4_osoby"
-            android:checked="false"/>
+            android:checked="false"
+            android:text="@string/_4_osoby" />
 
         <RadioButton
             android:id="@+id/radioButton5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_5_os_b"
-            android:checked="false"/>
+            android:checked="false"
+            android:text="@string/_5_os_b" />
 
         <RadioButton
             android:id="@+id/radioButton6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/_6_os_b"
-            android:checked="false"/>
+            android:layout_width="86dp"
+            android:layout_height="48dp"
+            android:checked="false"
+            android:text="@string/_6_os_b" />
     </RadioGroup>
 
 

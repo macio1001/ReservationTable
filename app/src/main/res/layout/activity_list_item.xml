@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="false"
-    android:padding="15dp">>
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/ImieTextView"
@@ -41,5 +41,7 @@
         android:layout_marginStart="165dp"
         android:layout_toEndOf="@+id/NazwiskoTextView"
         android:text="Godzina"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_marginLeft="165dp"
+        android:layout_toRightOf="@+id/NazwiskoTextView" />
 </RelativeLayout>

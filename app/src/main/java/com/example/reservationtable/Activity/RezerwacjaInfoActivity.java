@@ -39,6 +39,7 @@ public class RezerwacjaInfoActivity extends AppCompatActivity {
         textTelefonInfo=findViewById(R.id.telefonInfoTextView);
         textSstolikInfo=findViewById(R.id.stolikInfoTextView);
         textIloscInfo=findViewById(R.id.iloscInfoTextView);
+        imageLogoInfo=findViewById(R.id.logoinfoimageview);
 
         firebaseFirestore=FirebaseFirestore.getInstance();
         firebaseStorage=FirebaseStorage.getInstance();

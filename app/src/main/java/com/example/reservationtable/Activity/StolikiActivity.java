@@ -59,14 +59,14 @@ public class StolikiActivity extends AppCompatActivity {
         Boolean wylaczStolikCzwarty=intent.getBooleanExtra("WylaczStolik4",false);
         Boolean wylaczStolikPiaty=intent.getBooleanExtra("WylaczStolik5",false);
 
-        opcjestolikow();
+        opcjeStolikow();
 
-        wylaczonystolik1();
-        wylaczonystolik2();
-        wylaczonystolik3();
-        wylaczonystolik4();
-        wylaczonystolik5();
-        wylaczonystolik6();
+        wylaczonyStolik1();
+        wylaczonyStolik2();
+        wylaczonyStolik3();
+        wylaczonyStolik4();
+        wylaczonyStolik5();
+        wylaczonyStolik6();
 
         if(ilosc==1 || ilosc==2){
             imageStolikPierwszy.setBackgroundColor(Color.GREEN);
@@ -300,7 +300,7 @@ public class StolikiActivity extends AppCompatActivity {
         });
     }
 
-    private void opcjestolikow() {
+    private void opcjeStolikow() {
         imageStolikPierwszy.setVisibility(View.INVISIBLE);
         imageStolikDrugi.setVisibility(View.INVISIBLE);
         imageStolikTrzeci.setVisibility(View.INVISIBLE);
@@ -323,7 +323,7 @@ public class StolikiActivity extends AppCompatActivity {
         imageStolikSzosty.setBackgroundColor(Color.GRAY);
     }
 
-    private void wylaczonystolik1() {
+    private void wylaczonyStolik1() {
         firebaseFirestore.collection("Stoliknr1").document("Status").get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -356,7 +356,7 @@ public class StolikiActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void wylaczonystolik2() {
+    private void wylaczonyStolik2() {
         firebaseFirestore.collection("Stoliknr2").document("Status").get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -389,7 +389,7 @@ public class StolikiActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void wylaczonystolik3() {
+    private void wylaczonyStolik3() {
         firebaseFirestore.collection("Stoliknr3").document("Status").get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -422,7 +422,7 @@ public class StolikiActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void wylaczonystolik4() {
+    private void wylaczonyStolik4() {
         firebaseFirestore.collection("Stoliknr4").document("Status").get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -455,7 +455,7 @@ public class StolikiActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void wylaczonystolik5() {
+    private void wylaczonyStolik5() {
         firebaseFirestore.collection("Stoliknr5").document("Status").get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -488,7 +488,7 @@ public class StolikiActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void wylaczonystolik6(){
+    private void wylaczonyStolik6(){
         firebaseFirestore.collection("Stoliknr6").document("Status").get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override

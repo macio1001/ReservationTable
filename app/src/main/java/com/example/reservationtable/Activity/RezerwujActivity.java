@@ -327,6 +327,7 @@ public class RezerwujActivity extends AppCompatActivity{
             buttonDalej.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    wybranaGodzina=wybrana;
                     if ((wybranaData == null) && (wybranaGodzina == null) && (ilosc == 0)) {
                         Toast.makeText(RezerwujActivity.this, "Nie dokonałes wyboru obowiązkowych opcji!", Toast.LENGTH_SHORT).show();
                     } else if (wybranaGodzina == null) {

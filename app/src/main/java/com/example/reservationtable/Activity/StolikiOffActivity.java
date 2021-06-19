@@ -25,8 +25,8 @@ public class StolikiOffActivity extends AppCompatActivity {
     Button buttonAkceptuj;
 
     FirebaseFirestore firebaseFirestore;
-    public Boolean stolik1off=false,stolik2off=false,stolik3off=false,stolik4off=false,stolik5off=false,stolik6off=false;
-    public Boolean stolik1on=false,stolik2on=false,stolik3on=false,stolik4on=false,stolik5on=false,stolik6on=false;
+    public Boolean stolik1Off=false,stolik2Off=false, stolik3Off =false, stolik4Off =false, stolik5Off =false,stolik6off=false;
+    public Boolean stolik1On =false, stolik2On =false, stolik3On =false, stolik4On =false, stolik5On =false, stolik6On =false;
 
     private static final String TAG="StolikiOffActivity";
 
@@ -60,7 +60,7 @@ public class StolikiOffActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    stolik1off=true;
+                                    stolik1Off=true;
                                     Log.d(TAG,"DocumentSnapshot succesfully uptated!");
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -74,7 +74,7 @@ public class StolikiOffActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    stolik1off=false;
+                                    stolik1Off=false;
                                     Log.d(TAG,"DocumentSnapshot succesfully uptated!");
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -95,7 +95,7 @@ public class StolikiOffActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    stolik2off=true;
+                                    stolik2Off=true;
                                     Log.d(TAG,"DocumentSnapshot succesfully uptated!");
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -109,7 +109,7 @@ public class StolikiOffActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    stolik2off=false;
+                                    stolik2Off=false;
                                     Log.d(TAG,"DocumentSnapshot succesfully uptated!");
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -130,7 +130,7 @@ public class StolikiOffActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    stolik3off=true;
+                                    stolik3Off =true;
                                     Log.d(TAG,"DocumentSnapshot succesfully uptated!");
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -144,7 +144,7 @@ public class StolikiOffActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    stolik3off=false;
+                                    stolik3Off =false;
                                     Log.d(TAG,"DocumentSnapshot succesfully uptated!");
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -165,7 +165,7 @@ public class StolikiOffActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    stolik4off=true;
+                                    stolik4Off =true;
                                     Log.d(TAG,"DocumentSnapshot succesfully uptated!");
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -179,7 +179,7 @@ public class StolikiOffActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    stolik4off=false;
+                                    stolik4Off =false;
                                     Log.d(TAG,"DocumentSnapshot succesfully uptated!");
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -200,7 +200,7 @@ public class StolikiOffActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    stolik5off=true;
+                                    stolik5Off =true;
                                     Log.d(TAG,"DocumentSnapshot succesfully uptated!");
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -214,7 +214,7 @@ public class StolikiOffActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    stolik5off=false;
+                                    stolik5Off =false;
                                     Log.d(TAG,"DocumentSnapshot succesfully uptated!");
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -278,8 +278,8 @@ public class StolikiOffActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             DocumentSnapshot documentSnapshot=task.getResult();
                             if(documentSnapshot.exists()){
-                                stolik1on=documentSnapshot.getBoolean("OnOff");
-                                if(stolik1on==true){
+                                stolik1On =documentSnapshot.getBoolean("OnOff");
+                                if(stolik1On ==true){
                                     checkPierwszyStolik.setChecked(true);
                                 }
                                 Log.d(TAG,"DocumentSnapshot data: "+documentSnapshot.getData());
@@ -301,8 +301,8 @@ public class StolikiOffActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             DocumentSnapshot documentSnapshot=task.getResult();
                             if(documentSnapshot.exists()){
-                                stolik2on=documentSnapshot.getBoolean("OnOff");
-                                if(stolik2on==true){
+                                stolik2On =documentSnapshot.getBoolean("OnOff");
+                                if(stolik2On ==true){
                                     checkDrugiStolik.setChecked(true);
                                 }
                                 Log.d(TAG,"DocumentSnapshot data: "+documentSnapshot.getData());
@@ -324,8 +324,8 @@ public class StolikiOffActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             DocumentSnapshot documentSnapshot=task.getResult();
                             if(documentSnapshot.exists()){
-                                stolik3on=documentSnapshot.getBoolean("OnOff");
-                                if(stolik3on==true){
+                                stolik3On =documentSnapshot.getBoolean("OnOff");
+                                if(stolik3On ==true){
                                     checkTrzeciStolik.setChecked(true);
                                 }
                                 Log.d(TAG,"DocumentSnapshot data: "+documentSnapshot.getData());
@@ -347,8 +347,8 @@ public class StolikiOffActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             DocumentSnapshot documentSnapshot=task.getResult();
                             if(documentSnapshot.exists()){
-                                stolik4on=documentSnapshot.getBoolean("OnOff");
-                                if(stolik4on==true){
+                                stolik4On =documentSnapshot.getBoolean("OnOff");
+                                if(stolik4On ==true){
                                     checkCzwartyStolik.setChecked(true);
                                 }
                                 Log.d(TAG,"DocumentSnapshot data: "+documentSnapshot.getData());
@@ -370,8 +370,8 @@ public class StolikiOffActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             DocumentSnapshot documentSnapshot=task.getResult();
                             if(documentSnapshot.exists()){
-                                stolik5on=documentSnapshot.getBoolean("OnOff");
-                                if(stolik5on.equals(true)){
+                                stolik5On =documentSnapshot.getBoolean("OnOff");
+                                if(stolik5On.equals(true)){
                                     checkPiatyStolik.setChecked(true);
                                 }
                                 Log.d(TAG,"DocumentSnapshot data: "+documentSnapshot.getData());
@@ -393,8 +393,8 @@ public class StolikiOffActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             DocumentSnapshot documentSnapshot=task.getResult();
                             if(documentSnapshot.exists()){
-                                stolik6on=documentSnapshot.getBoolean("OnOff");
-                                if(stolik6on==true){
+                                stolik6On =documentSnapshot.getBoolean("OnOff");
+                                if(stolik6On ==true){
                                     checkSzostyStolik.setChecked(true);
                                 }
                                 Log.d(TAG,"DocumentSnapshot data: "+documentSnapshot.getData());
