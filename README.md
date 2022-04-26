@@ -5,8 +5,8 @@
 * [technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
-  -[Features client](#features-client)
-  -[Features restaurant](#features-restaurant)
+  - [Features client](#features-client)
+  - [Features restaurant](#features-restaurant)
 * [Sources](#sources)
 
 ## Indroduction
@@ -31,19 +31,19 @@ This appliaction was installed on all mobile devices with Android system from ve
 
 Features in application was partake on features client and features resturant.
 
-Features client:
-    - Reminder password
-    - Register
-    - Sign in
-    - show history reservation
-    - reservation table (user choose hour and amount of people, next step selected table on the maps table and last step reservation process this generation QR)
+### Features client:
+   - Reminder password
+   - Register
+   - Sign in
+   - Show history reservation
+   - Reservation table (user choose hour and amount of people, next step selected table on the maps table and last step reservation process this generation QR)
 
-Features restaurant:
-    - Sign In
-    - Reminder password
-    - show history reservation
-    - scanning QR
-    - can on or off table
+### Features restaurant:
+   - Sign In
+   - Reminder password
+   - Show history reservation
+   - Scanning QR
+   - Can on or off table
 
 ## Sources
 
